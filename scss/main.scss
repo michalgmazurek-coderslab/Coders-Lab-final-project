@@ -1,0 +1,80 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #ABB7B7;
+}
+
+.roadContainer {
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    width: 80vw;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+}
+
+#road {
+    min-width: 80%;
+    min-height: 100vh;
+    z-index: -1;
+    background-image: url(../img/Tileable%20tarmac%20road%20asphalt%20lines%20small.jpg);
+    background-repeat: repeat;
+    background-size: 14.3%;
+    border-left: 6px solid #F5D76E;
+    border-right: 6px solid #F5D76E;
+    -webkit-animation: backgroundScroll 22s linear infinite;
+    animation: backgroundScroll 22s linear infinite;
+    @-webkit-keyframes backgroundScroll {
+        from {
+            background-position: 0 0;
+        }
+        to {
+            background-position: 0 6600px;
+        }
+    }
+    @keyframes backgroundScroll {
+        from {
+            background-position: 0 0;
+        }
+        to {
+            background-position: 0 6600px;
+        }
+    }
+}
+
+#playerCar {
+    background-image: url(../img/Audi.png);
+    background-size: 160%;
+    background-position: center;
+    margin: 0;
+    background-repeat: no-repeat;
+    width: 7vw;
+    height: 9vw;
+    position: absolute;
+    top: 75%;
+    left: 51.2%;
+    z-index: 2;
+}
+
+//.linesContainer {
+//    display: flex;
+//    justify-content: center;
+//    align-content: center;
+//    height: 99.9vh;
+//    width: 70vw;
+//    margin-left: auto;
+//    margin-right: auto;
+//    z-index: 3;
+//    align-items: flex-start;
+//}
+//
+//.lines {
+//    height: 100vh;
+//    width: 13.1%;
+//    border: 2px solid pink;
+//    box-sizing: border-box;
+//}

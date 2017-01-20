@@ -1,0 +1,17 @@
+{
+  "name": "sass",
+  "version": "0.1.0",
+  "description": "RWD",
+  "author": "Michal Mazurek",
+
+  "devDependencies": {
+    "browser-sync": "^2.18.5",
+    "gulp": "^3.9.1",
+    "gulp-sass": "^3.0.0",
+    "gulp-sourcemaps": "^1.9.1"
+  },
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}

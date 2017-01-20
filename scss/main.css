@@ -1,0 +1,60 @@
+@charset "UTF-8";
+/* line 1, C:/Users/Michał Mazurek/Desktop/Kurs WAR_FRO_W_06/Projekty/Coders-Lab-final-project/Coders-Lab-final-project/scss/main.scss */
+* {
+  margin: 0;
+  padding: 0; }
+
+/* line 6, C:/Users/Michał Mazurek/Desktop/Kurs WAR_FRO_W_06/Projekty/Coders-Lab-final-project/Coders-Lab-final-project/scss/main.scss */
+body {
+  background-color: #ABB7B7; }
+
+/* line 10, C:/Users/Michał Mazurek/Desktop/Kurs WAR_FRO_W_06/Projekty/Coders-Lab-final-project/Coders-Lab-final-project/scss/main.scss */
+.roadContainer {
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  width: 80vw;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative; }
+
+/* line 20, C:/Users/Michał Mazurek/Desktop/Kurs WAR_FRO_W_06/Projekty/Coders-Lab-final-project/Coders-Lab-final-project/scss/main.scss */
+#road {
+  min-width: 80%;
+  min-height: 100vh;
+  z-index: -1;
+  background-image: url(../img/Tileable%20tarmac%20road%20asphalt%20lines%20small.jpg);
+  background-repeat: repeat;
+  background-size: 14.3%;
+  border-left: 6px solid #F5D76E;
+  border-right: 6px solid #F5D76E;
+  -webkit-animation: backgroundScroll 22s linear infinite;
+  animation: backgroundScroll 22s linear infinite; }
+
+@-webkit-keyframes backgroundScroll {
+  from {
+    background-position: 0 0; }
+  to {
+    background-position: 0 6600px; } }
+
+@keyframes backgroundScroll {
+  from {
+    background-position: 0 0; }
+  to {
+    background-position: 0 6600px; } }
+
+/* line 49, C:/Users/Michał Mazurek/Desktop/Kurs WAR_FRO_W_06/Projekty/Coders-Lab-final-project/Coders-Lab-final-project/scss/main.scss */
+#playerCar {
+  background-image: url(../img/Audi.png);
+  background-size: 160%;
+  background-position: center;
+  margin: 0;
+  background-repeat: no-repeat;
+  width: 7vw;
+  height: 9vw;
+  position: absolute;
+  top: 75%;
+  left: 51.2%;
+  z-index: 2; }
+
+/*# sourceMappingURL=main.css.map */
