@@ -51,10 +51,27 @@ body {
   margin: 0;
   background-repeat: no-repeat;
   width: 7vw;
-  height: 9vw;
+  height: 9.7vw;
   position: absolute;
   top: 75%;
-  left: 51.2%;
+  left: 50.4vw;
   z-index: 2; }
+
+/* line 63, C:/Users/Michał Mazurek/Desktop/Kurs WAR_FRO_W_06/Projekty/Coders-Lab-final-project/Coders-Lab-final-project/scss/main.scss */
+.linesContainer {
+  position: absolute;
+  top: 0;
+  width: 70vw;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 22;
+  margin-left: 22.8%; }
+
+/* line 73, C:/Users/Michał Mazurek/Desktop/Kurs WAR_FRO_W_06/Projekty/Coders-Lab-final-project/Coders-Lab-final-project/scss/main.scss */
+.lines {
+  height: 98.5vh;
+  width: 12.1%;
+  display: inline-block;
+  border: 2px solid pink; }
 
 /*# sourceMappingURL=main.css.map */
