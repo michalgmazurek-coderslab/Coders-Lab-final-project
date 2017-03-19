@@ -1,33 +1,46 @@
 document.addEventListener("DOMContentLoaded", function (event) {
-    var playerCar = document.querySelector("#playerCar");
-    console.log(playerCar);
-    var playerCarStyle = playerCar.style.left;
-    var playerCarStyleNumber = Number(playerCarStyle);
     
-    console.log(playerCarStyle);
+    var playerCar = $("#playerCar");
+    var road = document.querySelector('.roadContainer');
+    var roadWidth = road.clientWidth;
+    var lineWidth = roadWidth / 7;
+    var carPosition = 4;
     
-     var addLeft = function(x) {
-        playerCar.css()("left", (playerCarStyle + x) + "vw");
+    var imagesArray = [ 
+        "/Ambulance.png", 
+        "/Black_viper.png", 
+        "/Mini_truck.png", 
+        "/Mini_van.png", 
+        "/Police.png", 
+        "/truck.png", 
+        "/Car.png", 
+        "/taxi.png", 
+        "/Ambulance.png", 
+    ];
+    
+    function divGenerator (event) {
+        
+        $('<div class="generatedCar"></div>').insertAfter(road);
         
     };
-    
+    divGenerator();
     
     document.addEventListener("keydown", function (event) {
-        var offset = 12;
-        var pos = $("#playerCar").position();
-        console.log(pos);
-        if(event.keyCode == '39') {    
-            $("#playerCar").css('left', pos.left + offset);
+        var offset = lineWidth;
+        var pos = playerCar.position();
+        if (event.keyCode == '39') {
+            if (carPosition < 6) {
+                playerCar.css('left', pos.left + offset);
+                carPosition++;
+            }
         }
-        else if(event.keyCode == '37') {
-            $("#playerCar").css('left',pos.left - offset);
+        else if (event.keyCode == '37') {
+            if (carPosition != 1) {
+                playerCar.css('left', pos.left - offset);
+                carPosition--;
+            }
         }
-        else if(event.keyCode == '38') {
-            $("#playerCar").css('top',pos.top - offset);
-        }
-        else if(event.keyCode == '40') {
-            $("#playerCar").css('top',pos.top + offset);
-        }
-    
     });
+    
+    
 });

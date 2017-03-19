@@ -11,14 +11,14 @@ body {
     display: flex;
     justify-content: center;
     height: 100vh;
-    width: 80vw;
+    width: 70vw;
     margin-left: auto;
     margin-right: auto;
     position: relative;
 }
 
 #road {
-    min-width: 80%;
+    min-width: 100%;
     min-height: 100vh;
     z-index: -1;
     background-image: url(../img/Tileable%20tarmac%20road%20asphalt%20lines%20small.jpg);
@@ -55,24 +55,38 @@ body {
     width: 7vw;
     height: 9.7vw;
     position: absolute;
-    top: 75%;
-    left: 50.4vw;
+    top: 75vh;
+    left: 51.5vw;
     z-index: 2;
+    transition: all 0.3s linear;
 }
-
-.linesContainer {
+.generatedCar {
+    background-image: url(../img/Police.png);
+    background-size: 160%;
+    background-position: center;
+    margin: 0;
+    background-repeat: no-repeat;
+    width: 7vw;
+    height: 9.7vw;
     position: absolute;
-    top: 0;
-    width: 70vw;
-    margin-left: auto;
-    margin-right: auto;
-    z-index: 22;
-    margin-left: 22.8%;
+    top: -180px;
+    left: 21.5vw;
+    z-index: 2;
+    animation: carAnimation 3s 1;
 }
-
-.lines {
-    height: 98.5vh;
-    width: 12.1%;
-    display: inline-block;
-    border: 2px solid pink;
+@-webkit-keyframes carAnimation {
+  0%   { top: -20vh; }
+  100% { top: 120vh; }
+}
+@-moz-keyframes carAnimation {
+  0%   { top: -20vh; }
+  100% { top: 120vh; }
+}
+@-o-keyframes carAnimation {
+  0%   { top: -20%; }
+  100% { top: 120vh }
+}
+@keyframes carAnimation {
+  0%   { top: -180px; }
+  100% { top: 100vh; }
 }
