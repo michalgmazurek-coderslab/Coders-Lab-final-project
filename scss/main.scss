@@ -1,6 +1,7 @@
 * {
     margin: 0;
     padding: 0;
+    overflow: hidden;
 }
 
 body {
@@ -72,7 +73,7 @@ body {
     top: -180px;
     left: 21.5vw;
     z-index: 2;
-    animation: carAnimation 3s 1;
+    animation: carAnimation 2s 1 linear;
 }
 @-webkit-keyframes carAnimation {
   0%   { top: -20vh; }

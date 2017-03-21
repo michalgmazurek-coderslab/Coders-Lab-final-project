@@ -31,12 +31,17 @@ document.addEventListener("DOMContentLoaded", function (event) {
         if (event.keyCode == '39') {
             if (carPosition < 6) {
                 playerCar.css('left', pos.left + offset);
+                playerCar.css('transform', 'rotate('+20+'deg)');
                 carPosition++;
             }
         }
         else if (event.keyCode == '37') {
             if (carPosition != 1) {
                 playerCar.css('left', pos.left - offset);
+                playerCar.css({
+                    'transform': 'rotate(+'+20+'deg)',   
+                    'transform': 'rotate(-'+20+'deg)'    
+                });
                 carPosition--;
             }
         }
