@@ -16,6 +16,8 @@ body {
     margin-left: auto;
     margin-right: auto;
     position: relative;
+    border-left: 6px solid #F5D76E;
+    border-right: 6px solid #F5D76E;
 }
 
 #road {
@@ -25,8 +27,6 @@ body {
     background-image: url(../img/Tileable%20tarmac%20road%20asphalt%20lines%20small.jpg);
     background-repeat: repeat;
     background-size: 14.3%;
-    border-left: 6px solid #F5D76E;
-    border-right: 6px solid #F5D76E;
     -webkit-animation: backgroundScroll 22s linear infinite;
     animation: backgroundScroll 22s linear infinite;
     @-webkit-keyframes backgroundScroll {
@@ -59,7 +59,7 @@ body {
     top: 75vh;
     left: 51.5vw;
     z-index: 2;
-    transition: all 0.3s linear;
+    transition: all 0.4s linear;
 }
 .generatedCar {
     background-image: url(../img/Police.png);
