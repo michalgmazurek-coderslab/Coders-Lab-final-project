@@ -27,14 +27,14 @@ body {
     background-image: url(../img/Tileable%20tarmac%20road%20asphalt%20lines%20small.jpg);
     background-repeat: repeat;
     background-size: 14.3%;
-    -webkit-animation: backgroundScroll 22s linear infinite;
-    animation: backgroundScroll 22s linear infinite;
+    -webkit-animation: backgroundScroll 1s linear infinite;
+    animation: backgroundScroll 1s linear infinite;
     @-webkit-keyframes backgroundScroll {
         from {
             background-position: 0 0;
         }
         to {
-            background-position: 0 6600px;
+            background-position: 0 120vh;
         }
     }
     @keyframes backgroundScroll {
@@ -42,7 +42,7 @@ body {
             background-position: 0 0;
         }
         to {
-            background-position: 0 6600px;
+            background-position: 0 120vh;
         }
     }
 }
@@ -57,12 +57,12 @@ body {
     height: 9.7vw;
     position: absolute;
     top: 75vh;
-    left: 51.5vw;
+    left: 51.6vw;
     z-index: 2;
-    transition: all 0.4s linear;
+    transition: left 0.4s linear;
 }
 .generatedCar {
-    background-image: url(../img/Police.png);
+    // background-image: url(../img/Police.png);
     background-size: 160%;
     background-position: center;
     margin: 0;
@@ -70,11 +70,20 @@ body {
     width: 7vw;
     height: 9.7vw;
     position: absolute;
-    top: -180px;
-    left: 21.5vw;
+
+    // left: 21.5vw;
     z-index: 2;
-    animation: carAnimation 2s 1 linear;
 }
+
+.animateCar {
+    animation: carAnimation 2s linear;
+    animation-fill-mode: forwards;
+}
+
+.quickFix {
+    top: -180px;
+}
+
 @-webkit-keyframes carAnimation {
   0%   { top: -20vh; }
   100% { top: 120vh; }
@@ -89,5 +98,17 @@ body {
 }
 @keyframes carAnimation {
   0%   { top: -180px; }
-  100% { top: 100vh; }
+  0.00001%  { top: -179px; }
+  100% { top: 120vh; }
+}
+.Forward{
+    transform: rotate(0deg);
+}
+.turnLeft {
+    transform: rotate(-8deg);
+    transition: transform 0.4s ease;
+}
+.turnRight {
+    transform: rotate(8deg);
+    transition: transform 0.4s ease;
 }
