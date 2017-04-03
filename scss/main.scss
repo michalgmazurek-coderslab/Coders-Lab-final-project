@@ -76,7 +76,7 @@ body {
 }
 
 .animateCar {
-    animation: carAnimation 2s linear;
+    animation: carAnimation 3s linear;
     animation-fill-mode: forwards;
 }
 
@@ -85,21 +85,20 @@ body {
 }
 
 @-webkit-keyframes carAnimation {
-  0%   { top: -20vh; }
-  100% { top: 120vh; }
+    0%   { top: -180px; }
+    100% { top: 120vh; }
 }
 @-moz-keyframes carAnimation {
-  0%   { top: -20vh; }
-  100% { top: 120vh; }
+    0%   { top: -180px; }
+    100% { top: 120vh; }
 }
 @-o-keyframes carAnimation {
-  0%   { top: -20%; }
-  100% { top: 120vh }
+    0%   { top: -180px; }
+    100% { top: 120vh; }
 }
 @keyframes carAnimation {
-  0%   { top: -180px; }
-  0.00001%  { top: -179px; }
-  100% { top: 120vh; }
+    0%   { top: -180px; }
+    100% { top: 120vh; }
 }
 .Forward{
     transform: rotate(0deg);
