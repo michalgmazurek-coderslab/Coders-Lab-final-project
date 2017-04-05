@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     var roadWidth = road.width();
     var lineWidth = roadWidth / 7;
     var carPosition = 3;
-    var level = 5;
+    var level = 2;
     var cars = 0;
     var canTurn = true;
     var offset = lineWidth;
@@ -15,6 +15,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
     var currentCars = [];
     var carGeneratorInterval = setInterval(gameEngine, 500);
     setInterval(collision, 100);
+    var playerCarHeight = playerCar.css('height');
+    console.log(playerCarHeight);
     // console.log(roadWidth, lineWidth, offset, $(window).width());
 
     var imagesArray = [
@@ -31,10 +33,19 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     function collision() {
         // var currentRoad = $('#road');
-        // console.log(pos);
-        for (var i = 0; i < currentCars.length-1; i++) {
-            // console.log(currentCars);
-            if (currentCars[i].data('line') === carPosition) {
+        // console.log(currentCars);
+
+        // console.log('działa');
+        for (var i = 0; i < currentCars.length; i++) {
+            if (currentCars[i].data('line') == carPosition) {
+                console.log(playerCar.offset().top);
+                var playerCarOffset = playerCar.offset().top;
+                console.log(currentCars[i].offset().top);
+                console.log(playerCarHeight);
+                console.log((currentCars[i].offset().top) - playerCarHeight); //NaN ?? Pixele :( Mati pomóż
+                if (currentCars[i].offset().top - playerCarHeight.isNumeric== playerCarOffset) {
+                    console.log('Ło kierwa działa!!!');
+                }
                 console.log(carPosition);
                 console.log("Możliwa Kolizja!!")
             }
@@ -53,7 +64,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 rightTurn();
                 setTimeout(forward, 330);
                 carPosition++;
-                // collision();
+                collision();
                 // console.log(carPosition);
             } else if (carPosition === 5) {
                 turnPossible();
@@ -67,7 +78,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 playerCar.css('left', pos.left - offset);
                 carPosition--;
                 // console.log(carPosition);
-                // collision();
+                collision();
 
             } else if (carPosition === 0) {
                 turnPossible();
@@ -101,7 +112,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
             road.append(newCar);
             currentCars.push(newCar);
             cars++;
-            // collision();
+            collision();
         }
 
     };
