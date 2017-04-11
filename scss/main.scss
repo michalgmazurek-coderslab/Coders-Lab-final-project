@@ -2,10 +2,84 @@
     margin: 0;
     padding: 0;
     overflow: hidden;
+    font-family: 'Press Start 2P', Verdana, sans-serif;
+    color: white;
+    text-shadow: 3px 4px black;
 }
 
 body {
     background-color: #ABB7B7;
+}
+
+h1 {
+    font-size: 3em;
+    text-shadow: 8px 6px black;
+    margin-top: 10vh;
+    margin-bottom: 5vh;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.info {
+    position: absolute;
+    top: 97vh;
+    font-size: 0.6em;
+    margin-left: 1vw;
+    text-shadow: 1px 1px black;
+}
+
+.instructions {
+    font-size: 1.6em;
+    margin-top: 4vh;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.instructions p {
+    margin-top: 1vh;
+    font-size: 0.8em;
+}
+
+#startBtn {
+    font-size: 0.7em;
+    margin-top: 5vh;
+    width: 20vw;
+    height: 10vw;
+    border-radius: 10px;
+    background-color: #E26A6A;
+    border: none;
+}
+
+#startBtn:hover {
+    background-color: #D24D57;
+}
+
+.carImgContainer {
+    margin-top: 5vh;
+    top: 41vh;
+    height: 22vh;
+    width: 100%;
+}
+
+.carImg {
+
+    height: 20vh;
+    max-width: 100%;
+    background-image: url(../img/Audi.png);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+
+    margin-left: auto;
+    margin-right: auto;
+}
+#menu {
+    visibility: visible;
+}
+#gameBody {
+    visibility: hidden;
 }
 
 .roadContainer {

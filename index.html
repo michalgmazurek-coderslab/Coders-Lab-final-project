@@ -5,13 +5,38 @@
     <meta charset="UTF-8">
     <title>Final Project</title>
     <link rel="stylesheet" href="css/main.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Press+Start+2P');
+    </style>
 </head>
 
 <body>
-    <div class="roadContainer">
-        <div id="road"></div>
-    </div>
-    <div id="playerCar"> </div>
+    <section id="menu">
+        <h1>Infinite Highway</h1>
+        <p class="info"> 2017 by michalgmazurek </p>
+
+        <div class="carImgContainer">
+            <div class="carImg"></div>
+        </div>
+        <div class="instructions">
+            <p>Use arrows to navigate</p>
+            <p>Dont hit any car!</p>
+            <p>Press start button to play</p>
+            <button id="startBtn">START!</button>
+
+        </div>
+    </section>
+
+    <section id="gameBody">
+        <div class="roadContainer">
+            <div id="road"></div>
+        </div>
+        <div id="playerCar"> </div>
+    </section>
+
+    <section id="gameOver">
+
+    </section>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="app.js" type="text/javascript"></script>

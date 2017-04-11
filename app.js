@@ -14,12 +14,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     var randomCarPosition;
     var pos = playerCar.position();
     var currentCars = [];
-    var carGeneratorInterval = setInterval(gameEngine, 800);
-    // requestAnimationFrame(collision);
-    setInterval(collision, 100);
     var playerCarHeight = playerCar.css('height');
-    // console.log(playerCarHeight);
-    // console.log(roadWidth, lineWidth, offset, $(window).width());
 
     var imagesArray = [
         "/Ambulance.png",
@@ -33,27 +28,36 @@ document.addEventListener("DOMContentLoaded", function(event) {
         "/Ambulance.png",
     ];
 
-    function collision() {
-        // var currentRoad = $('#road');
-        // console.log(currentCars);
+    var isLineFree = [
+        [true, 0],
+        [true, 0],
+        [true, 0],
+        [true, 0],
+        [true, 0],
+        [true, 0]
+    ];
 
-        // console.log('działa');
+    var startBtn = $('#startBtn');
+    var menuSection = $('#menu');
+    var gameBody = $('#gameBody');
+
+    startBtn.on('click', function() {
+        menuSection.css('display', 'none');
+        gameBody.css('visibility', 'visible');
+        var carGeneratorInterval = setInterval(gameEngine, 800);
+    });
+
+    setInterval(collision, 100);
+
+    function collision() {
+
         for (var i = 0; i < currentCars.length; i++) {
             if (currentCars[i].data('line') == carPosition) {
-                // console.log(playerCar.offset().top);
                 var playerCarOffset = playerCar.offset().top;
-                // console.log(currentCars[i].offset().top);
-                // console.log(playerCarHeight);
-                // console.log((currentCars[i].offset().top) - parseInt(10, playerCarHeight)); //NaN ?? Pixele :( Mati pomóż
-                // console.log("currentCars[i].offset().top : " + currentCars[i].offset().top);
-                // console.log("parseInt(playerCarHeight)" + parseInt(playerCarHeight));
-                // console.log("currentCars[i].offset().top - parseInt(playerCarHeight : " + currentCars[i].offset().top - parseInt(playerCarHeight));
-                // console.log("playerCarOffset : " + playerCarOffset);
+
                 if ((currentCars[i].offset().top + parseInt(playerCarHeight) >= playerCarOffset) && (currentCars[i].offset().top - parseInt(playerCarHeight) <= 0.92 * playerCarOffset)) {
                     console.log('Ło kierwa działa!!!');
                 }
-                // console.log(carPosition);
-                // console.log("Możliwa Kolizja!!")
             }
         }
 
@@ -71,7 +75,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 setTimeout(forward, 330);
                 carPosition++;
                 collision();
-                // console.log(carPosition);
             } else if (carPosition === 5) {
                 turnPossible();
             }
@@ -83,7 +86,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 setTimeout(forward, 330);
                 playerCar.css('left', pos.left - offset);
                 carPosition--;
-                // console.log(carPosition);
                 collision();
 
             } else if (carPosition === 0) {
@@ -94,31 +96,41 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     function gameEngine() {
         randomCar();
-        // collision();
         recycleCars();
     };
 
     function divGenerator(line) {
-        return $('<div class="generatedCar animateCar" data-line="'+line+'" ></div>');
+        return $('<div class="generatedCar animateCar" data-line="' + line + '" ></div>');
     };
+    // var randomLinePosition = Math.floor(Math.random() * 6) + 0;
+    // function lineChecking () {
+    //     var randomLinePosition = Math.floor(Math.random() * 6) + 0;
+    //     if (isLineFree[randomLinePosition][0]) {
+    //         isLineFree[randomLinePosition][0] = false;
+    //         return randomLinePosition;
+    //     }
+    //     else {
+    //         lineChecking();
+    //     }
+    // }
+    //
+    // function freeLine () {
+    //
+    // }
+
 
     function randomCar() {
         if (cars < level) {
             var randomBackground = Math.floor(Math.random() * 9) + 0;
             var randomLinePosition = Math.floor(Math.random() * 6) + 0;
-            // console.log(randomLinePosition);
+            // var randomLinePosition = lineChecking();
+
             var newCar = divGenerator(randomLinePosition);
             newCar.css('background-image', 'url(./img' + imagesArray[randomBackground] + ')');
             newCar.css('left', ($(window).width() * 0.067 + (offset * randomLinePosition)));
-
-            // console.log("translate(" + $(window).width() * 0.067 + (offset * randomLinePosition) + ",0)");
-            // newCar.css({"transform":"translate(" + $(window).width() * 0.067 + (offset * randomLinePosition) + ",0)"});
-            // newCar.css({"transform":"translate(88.373263.79910714285717,0)"});
-            // console.log(newCar);
             road.append(newCar);
             currentCars.push(newCar);
             cars++;
-            collision();
         }
 
     };
@@ -127,12 +139,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
         var allCars = $(".generatedCar");
         var currentRoad = $('#road');
         var wH = $(window).height();
-        for (var i = 0; i < currentCars.length ; i++) {
+        console.log('wH value : ' + wH);
 
-            // console.log("Samochód " + i);
-            //
-            // console.log("Wysokość okna " + wH);
+        for (var i = 0; i < currentCars.length; i++) {
+            console.log($(allCars[i]).css("top"));
             if ($(allCars[i]).css("top").slice(0, -2) > wH) {
+                console.log("Działa");
+                // var randomBackground = lineChecking();
                 var randomBackground = Math.floor(Math.random() * 9) + 0;
                 var randomLinePosition = Math.floor(Math.random() * 6) + 0;
                 // console.log(randomLinePosition);
@@ -145,20 +158,16 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 //     .addClass('animateCar')
                 //     .data('line', randomLinePosition);
 
-                    var myCar = currentRoad.find(".generatedCar:nth-child("+(i+1)+")");
-                    myCar.removeClass('animateCar');
-                    // console.log("Przed " + myCar.css("top"));
-                    myCar.css('background-image', 'url(./img' + imagesArray[randomBackground] + ')')
+                var myCar = currentRoad.find(".generatedCar:nth-child(" + (i + 1) + ")");
+                myCar.removeClass('animateCar');
+                myCar.css('background-image', 'url(./img' + imagesArray[randomBackground] + ')')
                     .css('left', ($(window).width() * 0.067 + (offset * randomLinePosition)));
-                    // .css({"transform":"translate(88.373263.79910714285717,0)"})
-                    myCar.addClass('animateCar')
+                // .css({"transform":"translate(88.373263.79910714285717,0)"})
+                myCar.addClass('animateCar')
                     .data('line', randomLinePosition);
-                    // console.log("Po " + myCar.css("top"));
-                    score++;
-                    console.log(score);
+                score++;
             }
         }
-        // collision();
     }
 
     function turnPossible() {

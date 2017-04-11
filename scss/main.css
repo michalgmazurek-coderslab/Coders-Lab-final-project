@@ -1,0 +1,192 @@
+@charset "UTF-8";
+/* line 1, C:/Users/Michał Mazurek/Desktop/Final project CL/Coders-Lab-final-project/scss/main.scss */
+* {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  font-family: 'Press Start 2P', Verdana, sans-serif;
+  color: white;
+  text-shadow: 3px 3px black; }
+
+/* line 10, C:/Users/Michał Mazurek/Desktop/Final project CL/Coders-Lab-final-project/scss/main.scss */
+body {
+  background-color: #ABB7B7; }
+
+/* line 14, C:/Users/Michał Mazurek/Desktop/Final project CL/Coders-Lab-final-project/scss/main.scss */
+h1 {
+  font-size: 5em;
+  text-shadow: 8px 6px black;
+  margin-top: 10vh;
+  margin-bottom: 5vh;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center; }
+
+/* line 24, C:/Users/Michał Mazurek/Desktop/Final project CL/Coders-Lab-final-project/scss/main.scss */
+.info {
+  position: absolute;
+  top: 97vh;
+  font-size: 0.9em;
+  margin-left: 1vw; }
+
+/* line 31, C:/Users/Michał Mazurek/Desktop/Final project CL/Coders-Lab-final-project/scss/main.scss */
+.instructions {
+  font-size: 1.6em;
+  margin-top: 4vh;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center; }
+
+/* line 39, C:/Users/Michał Mazurek/Desktop/Final project CL/Coders-Lab-final-project/scss/main.scss */
+.instructions p {
+  margin-top: 2vh; }
+
+/* line 43, C:/Users/Michał Mazurek/Desktop/Final project CL/Coders-Lab-final-project/scss/main.scss */
+#startBtn {
+  font-size: 0.7em;
+  margin-top: 5vh;
+  width: 20vw;
+  height: 10vw;
+  border-radius: 10px;
+  background-color: #E26A6A;
+  border: none; }
+
+/* line 53, C:/Users/Michał Mazurek/Desktop/Final project CL/Coders-Lab-final-project/scss/main.scss */
+#startBtn:hover {
+  background-color: #D24D57; }
+
+/* line 57, C:/Users/Michał Mazurek/Desktop/Final project CL/Coders-Lab-final-project/scss/main.scss */
+.carImgContainer {
+  margin-top: 5vh;
+  top: 41vh;
+  height: 22vh;
+  width: 100%; }
+
+/* line 64, C:/Users/Michał Mazurek/Desktop/Final project CL/Coders-Lab-final-project/scss/main.scss */
+.carImg {
+  height: 20vh;
+  max-width: 100%;
+  background-image: url(../img/Audi.png);
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-left: auto;
+  margin-right: auto; }
+
+/* line 76, C:/Users/Michał Mazurek/Desktop/Final project CL/Coders-Lab-final-project/scss/main.scss */
+#menu {
+  visibility: visible; }
+
+/* line 79, C:/Users/Michał Mazurek/Desktop/Final project CL/Coders-Lab-final-project/scss/main.scss */
+#gameBody {
+  visibility: hidden; }
+
+/* line 83, C:/Users/Michał Mazurek/Desktop/Final project CL/Coders-Lab-final-project/scss/main.scss */
+.roadContainer {
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  width: 70vw;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  border-left: 6px solid #F5D76E;
+  border-right: 6px solid #F5D76E; }
+
+/* line 95, C:/Users/Michał Mazurek/Desktop/Final project CL/Coders-Lab-final-project/scss/main.scss */
+#road {
+  min-width: 100%;
+  min-height: 100vh;
+  z-index: -1;
+  background-image: url(../img/Tileable%20tarmac%20road%20asphalt%20lines%20small.jpg);
+  background-repeat: repeat;
+  background-size: 14.3%;
+  -webkit-animation: backgroundScroll 1s linear infinite;
+  animation: backgroundScroll 1s linear infinite; }
+
+@-webkit-keyframes backgroundScroll {
+  from {
+    background-position: 0 0; }
+  to {
+    background-position: 0 120vh; } }
+
+@keyframes backgroundScroll {
+  from {
+    background-position: 0 0; }
+  to {
+    background-position: 0 120vh; } }
+
+/* line 122, C:/Users/Michał Mazurek/Desktop/Final project CL/Coders-Lab-final-project/scss/main.scss */
+#playerCar {
+  background-image: url(../img/Audi.png);
+  background-size: 160%;
+  background-position: center;
+  margin: 0;
+  background-repeat: no-repeat;
+  width: 7vw;
+  height: 9.7vw;
+  position: absolute;
+  top: 75vh;
+  left: 51.6vw;
+  z-index: 2;
+  transition: left 0.4s linear; }
+
+/* line 136, C:/Users/Michał Mazurek/Desktop/Final project CL/Coders-Lab-final-project/scss/main.scss */
+.generatedCar {
+  background-size: 160%;
+  background-position: center;
+  margin: 0;
+  background-repeat: no-repeat;
+  width: 7vw;
+  height: 9.7vw;
+  position: absolute;
+  z-index: 2; }
+
+/* line 150, C:/Users/Michał Mazurek/Desktop/Final project CL/Coders-Lab-final-project/scss/main.scss */
+.animateCar {
+  animation: carAnimation 8s linear;
+  animation-fill-mode: forwards; }
+
+/* line 155, C:/Users/Michał Mazurek/Desktop/Final project CL/Coders-Lab-final-project/scss/main.scss */
+.quickFix {
+  top: -180px; }
+
+@-webkit-keyframes carAnimation {
+  0% {
+    top: -180px; }
+  100% {
+    top: 120vh; } }
+
+@-moz-keyframes carAnimation {
+  0% {
+    top: -180px; }
+  100% {
+    top: 120vh; } }
+
+@-o-keyframes carAnimation {
+  0% {
+    top: -180px; }
+  100% {
+    top: 120vh; } }
+
+@keyframes carAnimation {
+  0% {
+    top: -180px; }
+  100% {
+    top: 120vh; } }
+
+/* line 175, C:/Users/Michał Mazurek/Desktop/Final project CL/Coders-Lab-final-project/scss/main.scss */
+.Forward {
+  transform: rotate(0deg); }
+
+/* line 178, C:/Users/Michał Mazurek/Desktop/Final project CL/Coders-Lab-final-project/scss/main.scss */
+.turnLeft {
+  transform: rotate(-8deg);
+  transition: transform 0.4s ease; }
+
+/* line 182, C:/Users/Michał Mazurek/Desktop/Final project CL/Coders-Lab-final-project/scss/main.scss */
+.turnRight {
+  transform: rotate(8deg);
+  transition: transform 0.4s ease; }
+
+/*# sourceMappingURL=main.css.map */
