@@ -14,7 +14,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
     var randomCarPosition;
     var pos = playerCar.position();
     var currentCars = [];
-    var playerCarHeight = playerCar.css('height');
+    var playerCarHeight = playerCar.css("height");
+    var turnLeftButton = $("#turnLeft");
+    var turnRightButton = $("#turnRight");
 
     var imagesArray = [
         "/Ambulance.png",
@@ -37,13 +39,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
         [true, 0]
     ];
 
-    var startBtn = $('#startBtn');
-    var menuSection = $('#menu');
-    var gameBody = $('#gameBody');
+    var startBtn = $("#startBtn");
+    var menuSection = $("#menu");
+    var gameBody = $("#gameBody");
 
-    startBtn.on('click', function() {
-        menuSection.css('display', 'none');
-        gameBody.css('visibility', 'visible');
+    startBtn.on("click", function() {
+        menuSection.css("display", "none");
+        gameBody.css("visibility", "visible");
         var carGeneratorInterval = setInterval(gameEngine, 800);
     });
 
@@ -52,25 +54,48 @@ document.addEventListener("DOMContentLoaded", function(event) {
     function collision() {
 
         for (var i = 0; i < currentCars.length; i++) {
-            if (currentCars[i].data('line') == carPosition) {
+            if (currentCars[i].data("line") == carPosition) {
                 var playerCarOffset = playerCar.offset().top;
 
                 if ((currentCars[i].offset().top + parseInt(playerCarHeight) >= playerCarOffset) && (currentCars[i].offset().top - parseInt(playerCarHeight) <= 0.92 * playerCarOffset)) {
-                    console.log('Ło kierwa działa!!!');
+                    console.log("Ło kierwa działa!!!");
                 }
             }
         }
 
     }
 
-    document.addEventListener("keydown", function(event) {
+    turnLeftButton.mousedown(function(event) {
         var offset = lineWidth;
         var pos = playerCar.position();
-        if (canTurn === true && event.keyCode == '39') {
+        // $(this).children.stopPropagation();
+
+        if (canTurn === true) {
+            canTurn = false;
+            if (carPosition != 0) {
+                setTimeout(turnPossible, 400);
+                leftTurn();
+                setTimeout(forward, 330);
+                playerCar.css("left", pos.left - offset);
+                carPosition--;
+                collision();
+
+            } else if (carPosition === 0) {
+                turnPossible();
+            }
+        }
+    });
+
+    turnRightButton.mousedown(function(event) {
+        var offset = lineWidth;
+        var pos = playerCar.position();
+        // $(this).children.stopPropagation();
+
+        if (canTurn === true) {
             canTurn = false;
             if (carPosition < 5) {
                 setTimeout(turnPossible, 400);
-                playerCar.css('left', pos.left + offset);
+                playerCar.css("left", pos.left + offset);
                 rightTurn();
                 setTimeout(forward, 330);
                 carPosition++;
@@ -78,13 +103,31 @@ document.addEventListener("DOMContentLoaded", function(event) {
             } else if (carPosition === 5) {
                 turnPossible();
             }
-        } else if (canTurn === true && event.keyCode == '37') {
+        }
+    });
+
+    document.addEventListener("keydown", function(event) {
+        var offset = lineWidth;
+        var pos = playerCar.position();
+        if (canTurn === true && event.keyCode == "39") {
+            canTurn = false;
+            if (carPosition < 5) {
+                setTimeout(turnPossible, 400);
+                playerCar.css("left", pos.left + offset);
+                rightTurn();
+                setTimeout(forward, 330);
+                carPosition++;
+                collision();
+            } else if (carPosition === 5) {
+                turnPossible();
+            }
+        } else if (canTurn === true && event.keyCode == "37") {
             canTurn = false;
             if (carPosition != 0) {
                 setTimeout(turnPossible, 400);
                 leftTurn();
                 setTimeout(forward, 330);
-                playerCar.css('left', pos.left - offset);
+                playerCar.css("left", pos.left - offset);
                 carPosition--;
                 collision();
 
@@ -100,7 +143,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     };
 
     function divGenerator(line) {
-        return $('<div class="generatedCar animateCar" data-line="' + line + '" ></div>');
+        return $("<div class='generatedCar animateCar' data-line='" + line + "' ></div>");
     };
     // var randomLinePosition = Math.floor(Math.random() * 6) + 0;
     // function lineChecking () {
@@ -126,8 +169,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
             // var randomLinePosition = lineChecking();
 
             var newCar = divGenerator(randomLinePosition);
-            newCar.css('background-image', 'url(./img' + imagesArray[randomBackground] + ')');
-            newCar.css('left', ($(window).width() * 0.067 + (offset * randomLinePosition)));
+            newCar.css("background-image", "url(./img" + imagesArray[randomBackground] + ")");
+            newCar.css("left", ($(window).width() * 0.067 + (offset * randomLinePosition)));
             road.append(newCar);
             currentCars.push(newCar);
             cars++;
@@ -137,9 +180,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     function recycleCars() {
         var allCars = $(".generatedCar");
-        var currentRoad = $('#road');
+        var currentRoad = $("#road");
         var wH = $(window).height();
-        console.log('wH value : ' + wH);
+        console.log("wH value : " + wH);
 
         for (var i = 0; i < currentCars.length; i++) {
             console.log($(allCars[i]).css("top"));
@@ -151,20 +194,20 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 // console.log(randomLinePosition);
 
                 // currentRoad.find(".generatedCar:nth-child("+(i+1)+")")
-                //     .removeClass('animateCar')
-                //     .css('background-image', 'url(./img' + imagesArray[randomBackground] + ')')
-                //     .css('left', ($(window).width() * 0.067 + (offset * randomLinePosition)))
+                //     .removeClass("animateCar")
+                //     .css("background-image", "url(./img" + imagesArray[randomBackground] + ")")
+                //     .css("left", ($(window).width() * 0.067 + (offset * randomLinePosition)))
                 //     // .css({"transform":"translate(88.373263.79910714285717,0)"})
-                //     .addClass('animateCar')
-                //     .data('line', randomLinePosition);
+                //     .addClass("animateCar")
+                //     .data("line", randomLinePosition);
 
                 var myCar = currentRoad.find(".generatedCar:nth-child(" + (i + 1) + ")");
-                myCar.removeClass('animateCar');
-                myCar.css('background-image', 'url(./img' + imagesArray[randomBackground] + ')')
-                    .css('left', ($(window).width() * 0.067 + (offset * randomLinePosition)));
+                myCar.removeClass("animateCar");
+                myCar.css("background-image", "url(./img" + imagesArray[randomBackground] + ")")
+                    .css("left", ($(window).width() * 0.067 + (offset * randomLinePosition)));
                 // .css({"transform":"translate(88.373263.79910714285717,0)"})
-                myCar.addClass('animateCar')
-                    .data('line', randomLinePosition);
+                myCar.addClass("animateCar")
+                    .data("line", randomLinePosition);
                 score++;
             }
         }
@@ -175,19 +218,19 @@ document.addEventListener("DOMContentLoaded", function(event) {
     };
 
     function leftTurn() {
-        playerCar.removeClass('turnRight');
-        playerCar.addClass('turnLeft');
+        playerCar.removeClass("turnRight");
+        playerCar.addClass("turnLeft");
     };
 
     function rightTurn() {
-        playerCar.removeClass('turnLeft');
-        playerCar.addClass('turnRight');
+        playerCar.removeClass("turnLeft");
+        playerCar.addClass("turnRight");
     };
 
     function forward() {
-        playerCar.removeClass('turnLeft');
-        playerCar.removeClass('turnRight')
-        playerCar.addClass('Forward');
+        playerCar.removeClass("turnLeft");
+        playerCar.removeClass("turnRight")
+        playerCar.addClass("Forward");
     };
 
 });

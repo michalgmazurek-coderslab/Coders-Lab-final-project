@@ -80,6 +80,7 @@ h1 {
 }
 #gameBody {
     visibility: hidden;
+    display: flex;
 }
 
 .roadContainer {
@@ -121,10 +122,39 @@ h1 {
     }
 }
 
+#turnLeft {
+    height: 99vh;
+    width: 14vw;
+    height: 99vh;
+    width: 14vw;
+    z-index: 4;
+}
+
+.leftArrow {
+    font-size: 6em;
+    transform: rotate(180deg);
+    margin: 0;
+    padding-bottom: 72vh;
+    z-index: 3;
+}
+
+#turnRight {
+    height: 99vh;
+    width: 14vw;
+
+    z-index: 4;
+}
+
+.rightArrow {
+    font-size: 6em;
+    padding-top: 70vh;
+    z-index: 3;
+}
+
 #playerCar {
     background-image: url(../img/Audi.png);
-    background-size: 160%;
     background-position: center;
+    background-size: 160%;
     margin: 0;
     background-repeat: no-repeat;
     width: 7vw;
@@ -137,8 +167,8 @@ h1 {
 }
 .generatedCar {
     // background-image: url(../img/Police.png);
-    background-size: 160%;
     background-position: center;
+    background-size: 160%;
     margin: 0;
     background-repeat: no-repeat;
     width: 7vw;
@@ -184,4 +214,52 @@ h1 {
 .turnRight {
     transform: rotate(8deg);
     transition: transform 0.4s ease;
+}
+
+@media only screen and (orientation:portrait){
+
+  body {
+    margin-left: auto;
+    margin-right: auto;
+
+    height: 100vw;
+
+    -webkit-transform: rotate(90deg);
+
+    -moz-transform: rotate(90deg);
+
+    -o-transform: rotate(90deg);
+
+    -ms-transform: rotate(90deg);
+
+    transform: rotate(90deg);
+
+  }
+
+  #menu {
+      margin-top: 150px;
+      margin-bottom: auto;
+  }
+
+}
+
+@media only screen and (orientation:landscape){
+
+  body {
+
+      margin-top: auto;
+      margin-bottom: auto;
+
+     -webkit-transform: rotate(0deg);
+
+     -moz-transform: rotate(0deg);
+
+     -o-transform: rotate(0deg);
+
+     -ms-transform: rotate(0deg);
+
+     transform: rotate(0deg);
+
+  }
+
 }
