@@ -14,10 +14,7 @@ body {
 h1 {
     font-size: 2em;
     text-shadow: 8px 6px black;
-    margin-top: 10vh;
-    margin-bottom: 5vh;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 10vh auto 5vh;
     text-align: center;
 }
 
@@ -64,20 +61,20 @@ h1 {
 }
 
 .carImg {
-
     height: 20vh;
     max-width: 100%;
-    background-image: url(../img/Audi.png);
+    background-image: url("../img/Audi.png");
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
-
     margin-left: auto;
     margin-right: auto;
 }
+
 #menu {
     visibility: visible;
 }
+
 #gameBody {
     visibility: hidden;
     display: flex;
@@ -99,7 +96,7 @@ h1 {
     min-width: 100%;
     min-height: 100vh;
     z-index: -1;
-    background-image: url(../img/Tileable%20tarmac%20road%20asphalt%20lines%20small.jpg);
+    background-image: url("../img/Tileable%20tarmac%20road%20asphalt%20lines%20small.jpg");
     background-repeat: repeat;
     background-size: 14.3%;
     -webkit-animation: backgroundScroll 1s linear infinite;
@@ -108,6 +105,7 @@ h1 {
         from {
             background-position: 0 0;
         }
+
         to {
             background-position: 0 120vh;
         }
@@ -116,6 +114,7 @@ h1 {
         from {
             background-position: 0 0;
         }
+
         to {
             background-position: 0 120vh;
         }
@@ -141,7 +140,6 @@ h1 {
 #turnRight {
     height: 99vh;
     width: 14vw;
-
     z-index: 4;
 }
 
@@ -152,7 +150,7 @@ h1 {
 }
 
 #playerCar {
-    background-image: url(../img/Audi.png);
+    background-image: url("../img/Audi.png");
     background-position: center;
     background-size: 160%;
     margin: 0;
@@ -165,6 +163,7 @@ h1 {
     z-index: 2;
     transition: left 0.4s linear;
 }
+
 .generatedCar {
     // background-image: url(../img/Police.png);
     background-position: center;
@@ -174,7 +173,6 @@ h1 {
     width: 7vw;
     height: 9.7vw;
     position: absolute;
-
     // left: 21.5vw;
     z-index: 2;
 }
@@ -187,79 +185,81 @@ h1 {
 .quickFix {
     top: -180px;
 }
-
 @-webkit-keyframes carAnimation {
-    0%   { top: -180px; }
-    100% { top: 120vh; }
+    0% {
+        top: -180px;
+    }
+
+    100% {
+        top: 120vh;
+    }
 }
 @-moz-keyframes carAnimation {
-    0%   { top: -180px; }
-    100% { top: 120vh; }
+    0% {
+        top: -180px;
+    }
+
+    100% {
+        top: 120vh;
+    }
 }
 @-o-keyframes carAnimation {
-    0%   { top: -180px; }
-    100% { top: 120vh; }
+    0% {
+        top: -180px;
+    }
+
+    100% {
+        top: 120vh;
+    }
 }
 @keyframes carAnimation {
-    0%   { top: -180px; }
-    100% { top: 120vh; }
+    0% {
+        top: -180px;
+    }
+
+    100% {
+        top: 120vh;
+    }
 }
-.Forward{
+
+.Forward {
     transform: rotate(0deg);
 }
+
 .turnLeft {
     transform: rotate(-8deg);
     transition: transform 0.4s ease;
 }
+
 .turnRight {
     transform: rotate(8deg);
     transition: transform 0.4s ease;
 }
+@media only screen and (orientation:portrait) {
+    body {
+        margin-top:: auto;
+        margin-bottom: auto;
+        height: 100vw;
+        -webkit-transform: rotate(90deg);
+        -moz-transform: rotate(90deg);
+        -o-transform: rotate(90deg);
+        -ms-transform: rotate(90deg);
+        transform: rotate(90deg);
+    }
 
-@media only screen and (orientation:portrait){
-
-  body {
-    margin-left: auto;
-    margin-right: auto;
-
-    height: 100vw;
-
-    -webkit-transform: rotate(90deg);
-
-    -moz-transform: rotate(90deg);
-
-    -o-transform: rotate(90deg);
-
-    -ms-transform: rotate(90deg);
-
-    transform: rotate(90deg);
-
-  }
-
-  #menu {
-      margin-top: 150px;
-      margin-bottom: auto;
-  }
-
+    #menu {
+        margin-top: 150px;
+        margin-bottom: auto;
+    }
 }
-
-@media only screen and (orientation:landscape){
-
-  body {
-
-      margin-top: auto;
-      margin-bottom: auto;
-
-     -webkit-transform: rotate(0deg);
-
-     -moz-transform: rotate(0deg);
-
-     -o-transform: rotate(0deg);
-
-     -ms-transform: rotate(0deg);
-
-     transform: rotate(0deg);
-
-  }
-
+@media only screen and (orientation:landscape) {
+    body {
+        margin-top: auto;
+        margin-bottom: auto;
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
 }
