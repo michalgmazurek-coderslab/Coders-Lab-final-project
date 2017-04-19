@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     var roadWidth = road.width();
     var lineWidth = roadWidth / 7;
     var carPosition = 3;
-    var level = 6;
+    var level = 14;
     var cars = 0;
     var score = 0;
     var canTurn = true;
@@ -17,6 +17,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
     var playerCarHeight = playerCar.css("height");
     var turnLeftButton = $("#turnLeft");
     var turnRightButton = $("#turnRight");
+
+    var carAnimationDuration = 6;
+    var carSpeed = ((carAnimationDuration / (windowHeight / parseInt(playerCarHeight)))*1000).toFixed(0);
+    console.log('car height : ' + playerCarHeight);
+    console.log('wh : ' + windowHeight);
+    console.log('car speed : ' + carSpeed);
+    console.log("carAnimationDuration : " + carSpeed);
 
     var imagesArray = [
         "/Ambulance.png",
@@ -31,25 +38,22 @@ document.addEventListener("DOMContentLoaded", function(event) {
     ];
 
     var isLineFree = [
-        [true, 0],
-        [true, 0],
-        [true, 0],
-        [true, 0],
-        [true, 0],
-        [true, 0]
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
     ];
 
-    var startBtn = $("#startBtn");
-    var menuSection = $("#menu");
-    var gameBody = $("#gameBody");
-
-    startBtn.on("click", function() {
-        menuSection.css("display", "none");
-        gameBody.css("visibility", "visible");
-        var carGeneratorInterval = setInterval(gameEngine, 800);
-    });
-
     setInterval(collision, 100);
+
+    function clearLine (lineNumber) {
+        setTimeout(function() {
+            //licze czas wczesniej - łapie wh i obliczam ile czasu zajmie zjechanie jednego samochodu - podstawiam pod timeout na koncu tej funkcji.
+            isLineFree[lineNumber] = true;
+        }, carSpeed)
+    }
 
     function collision() {
 
@@ -59,6 +63,24 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
                 if ((currentCars[i].offset().top + parseInt(playerCarHeight) >= playerCarOffset) && (currentCars[i].offset().top - parseInt(playerCarHeight) <= 0.92 * playerCarOffset)) {
                     console.log("Ło kierwa działa!!!");
+                    $("#road").css("animation", "none");
+                    currentCars = [];
+                    $("#gameBody").fadeOut("slow");
+                    $("#scoreToAdd").html(score * 10);
+                    setTimeout(function () {
+                        $(".gameOver").fadeOut("1000");
+
+                    }, 1000);
+                    setTimeout(function() {
+                        $(".yourScore").removeClass("hidden");
+                    },1600)
+                    $(document).ready(function() {
+                        var audioElement = document.createElement('audio');
+                        audioElement.setAttribute('src', '../sounds/crash.mp3');
+                        audioElement.addEventListener('ended', function() {
+                            this.play();
+                        }, true);
+                    });
                 }
             }
         }
@@ -71,7 +93,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     //   // This line still calls the standard click event, in case the user needs to interact with the element that is being clicked on, but still avoids zooming in cases of double clicking.
     // })
 
-    turnLeftButton.mousedown(function(event) {
+    turnLeftButton.on("touchstart", function(event) {
         var offset = lineWidth;
         var pos = playerCar.position();
         // $(this).children.stopPropagation();
@@ -84,7 +106,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 setTimeout(forward, 330);
                 playerCar.css("left", pos.left - offset);
                 carPosition--;
-                collision();
 
             } else if (carPosition === 0) {
                 turnPossible();
@@ -92,7 +113,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         }
     });
 
-    turnRightButton.mousedown(function(event) {
+    turnRightButton.on("touchstart", function(event) {
         var offset = lineWidth;
         var pos = playerCar.position();
         // $(this).children.stopPropagation();
@@ -105,14 +126,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 rightTurn();
                 setTimeout(forward, 330);
                 carPosition++;
-                collision();
             } else if (carPosition === 5) {
                 turnPossible();
             }
         }
     });
 
-    document.addEventListener("keydown", function(event) {
+    document.addEventListener("keydown", function turns (event) {
         var offset = lineWidth;
         var pos = playerCar.position();
         if (canTurn === true && event.keyCode == "39") {
@@ -123,7 +143,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 rightTurn();
                 setTimeout(forward, 330);
                 carPosition++;
-                collision();
             } else if (carPosition === 5) {
                 turnPossible();
             }
@@ -135,7 +154,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 setTimeout(forward, 330);
                 playerCar.css("left", pos.left - offset);
                 carPosition--;
-                collision();
 
             } else if (carPosition === 0) {
                 turnPossible();
@@ -170,16 +188,24 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     function randomCar() {
         if (cars < level) {
-            var randomBackground = Math.floor(Math.random() * 9) + 0;
             var randomLinePosition = Math.floor(Math.random() * 6) + 0;
-            // var randomLinePosition = lineChecking();
+            if (isLineFree[randomLinePosition]) {
+                var randomBackground = Math.floor(Math.random() * 9) + 0;
+                // var randomLinePosition = lineChecking();
 
-            var newCar = divGenerator(randomLinePosition);
-            newCar.css("background-image", "url(./img" + imagesArray[randomBackground] + ")");
-            newCar.css("left", ($(window).width() * 0.067 + (offset * randomLinePosition)));
-            road.append(newCar);
-            currentCars.push(newCar);
-            cars++;
+                var newCar = divGenerator(randomLinePosition);
+                newCar.css("background-image", "url(./img" + imagesArray[randomBackground] + ")");
+                newCar.css("left", ($(window).width() * 0.067 + (offset * randomLinePosition)));
+                road.append(newCar);
+                currentCars.push(newCar);
+                cars++;
+                isLineFree[randomLinePosition] = false;
+                clearLine(randomLinePosition);
+            }
+            else {
+                randomCar();
+            }
+
         }
 
     };
@@ -188,12 +214,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
         var allCars = $(".generatedCar");
         var currentRoad = $("#road");
         var wH = $(window).height();
-        console.log("wH value : " + wH);
+        // console.log("wH value : " + wH);
 
         for (var i = 0; i < currentCars.length; i++) {
-            console.log($(allCars[i]).css("top"));
+            // console.log($(allCars[i]).css("top"));
             if ($(allCars[i]).css("top").slice(0, -2) > wH) {
-                console.log("Działa");
+                // console.log("Działa");
                 // var randomBackground = lineChecking();
                 var randomBackground = Math.floor(Math.random() * 9) + 0;
                 var randomLinePosition = Math.floor(Math.random() * 6) + 0;
@@ -215,6 +241,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 myCar.addClass("animateCar")
                     .data("line", randomLinePosition);
                 score++;
+                isLineFree[randomLinePosition] = false;
+                clearLine(randomLinePosition);
             }
         }
     }
@@ -238,5 +266,16 @@ document.addEventListener("DOMContentLoaded", function(event) {
         playerCar.removeClass("turnRight")
         playerCar.addClass("Forward");
     };
+
+    var startBtn = $("#startBtn");
+    var menuSection = $("#menu");
+    var gameBody = $("#gameBody");
+
+    startBtn.on("click", function() {
+        menuSection.addClass("hidden");
+        gameBody.css("visibility", "visible");
+        console.log("dupa");
+        var carGeneratorInterval = setInterval(gameEngine, 800);
+    });
 
 });

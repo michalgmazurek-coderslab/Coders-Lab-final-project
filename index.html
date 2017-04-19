@@ -2,14 +2,18 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <title>Final Project</title>
     <link rel="stylesheet" href="css/main.css">
     <style>
         @import url('https://fonts.googleapis.com/css?family=Press+Start+2P');
     </style>
 </head>
+
 <body>
+    <audio loop="loop" autoplay="autoplay">
+    <source src="sounds/music.wav" type="audio/mpeg" />
+</audio>
     <section id="menu">
         <h1>Infinite Highway</h1>
         <p class="info"> 2017 by michalgmazurek </p>
@@ -39,8 +43,18 @@
         <div id="playerCar"> </div>
     </section>
 
-    <section id="gameOver">
+    <section id="gameOverSection hidden">
+        <div class="gameOver">
+            <h1>game<br>over</h1> </div>
+        <div class="yourScore hidden">
+            <h2>Your score: <span id="scoreToAdd"></span></h2>
+            <h2>Your name:</h2>
+            <form>
+                <input id="nameInput" style="font-family: 'Press Start 2P', Verdana, sans-serif" type="text" placeholder="Your name...">
+                <input class="button" style="font-family: 'Press Start 2P', Verdana, sans-serif" type="submit" value="Submit">
+            </form>
 
+        </div>
     </section>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>

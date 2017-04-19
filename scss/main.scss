@@ -18,6 +18,14 @@ h1 {
     text-align: center;
 }
 
+.hidden {
+	display: none;
+}
+
+.visable {
+    display: block;
+}
+
 .info {
     position: absolute;
     top: 97vh;
@@ -72,12 +80,11 @@ h1 {
 }
 
 #menu {
-    visibility: visible;
 }
 
 #gameBody {
-    visibility: hidden;
     display: flex;
+    visibility: hidden;
 }
 
 .roadContainer {
@@ -178,13 +185,26 @@ h1 {
 }
 
 .animateCar {
-    animation: carAnimation 8s linear;
+    animation: carAnimation linear;
+    animation-duration: 6s;
     animation-fill-mode: forwards;
 }
 
 .quickFix {
     top: -180px;
 }
+
+#gameOverSection {
+    overflow: auto;
+}
+
+.gameOver h1 {
+    text-transform: uppercase;
+    font-size: 9em;
+    margin-top: 30vh;
+    z-index: 5;
+}
+
 @-webkit-keyframes carAnimation {
     0% {
         top: -180px;
@@ -235,22 +255,41 @@ h1 {
     transform: rotate(8deg);
     transition: transform 0.4s ease;
 }
-@media only screen and (orientation:portrait) {
-    body {
-        margin-top:: auto;
-        margin-bottom: auto;
-        height: 100vw;
-        -webkit-transform: rotate(90deg);
-        -moz-transform: rotate(90deg);
-        -o-transform: rotate(90deg);
-        -ms-transform: rotate(90deg);
-        transform: rotate(90deg);
-    }
 
-    #menu {
-        margin-top: 150px;
-        margin-bottom: auto;
-    }
+.yourScore {
+	text-shadow: 1px 1px black;
+	font-size: 1.8em;
+	text-transform: uppercase;
+	margin-top: 30vh;
+	width: 70vw;
+    height: 60vh;
+	position: absolute;
+	left: 0;
+	right: 0;
+	margin-left: auto;
+	margin-right: auto;
+}
+.yourScore .button {
+	width: 35%;
+	height: 10%;
+	background-color: white;
+    text-shadow: none;
+	box-shadow: 1px 1px black;
+	color: black;
+	border-color: transparent;
+    margin-top: 3vh;
+}
+.yourScore #nameInput {
+	border-color: transparent;
+    text-shadow: none;
+	width: 30%;
+	height: 10%;
+    margin-top: 3vh;
+	color: black;
+}
+
+@media only screen and (orientation:portrait) {
+
 }
 @media only screen and (orientation:landscape) {
     body {
