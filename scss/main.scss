@@ -1,7 +1,6 @@
 * {
     margin: 0;
     padding: 0;
-    overflow: hidden;
     font-family: 'Press Start 2P', Verdana, sans-serif;
     color: white;
     text-shadow: 3px 4px black;
@@ -9,6 +8,7 @@
 
 body {
     background-color: #ABB7B7;
+    overflow: hidden;
 }
 
 h1 {
@@ -137,10 +137,10 @@ h1 {
 }
 
 .leftArrow {
-    font-size: 6em;
+    font-size: 4em;
     transform: rotate(180deg);
     margin: 0;
-    padding-bottom: 72vh;
+    padding-bottom: 75vh;
     z-index: 3;
 }
 
@@ -151,8 +151,8 @@ h1 {
 }
 
 .rightArrow {
-    font-size: 6em;
-    padding-top: 70vh;
+    font-size: 4em;
+    padding-top: 72vh;
     z-index: 3;
 }
 
@@ -257,6 +257,9 @@ h1 {
 }
 
 .yourScore {
+    display: flex;
+    align-content: center;
+    flex-direction: column;
 	text-shadow: 1px 1px black;
 	font-size: 1.8em;
 	text-transform: uppercase;
@@ -269,9 +272,16 @@ h1 {
 	margin-left: auto;
 	margin-right: auto;
 }
+
+.yourScore form {
+    margin-top: 4vh;
+}
+.yourScore h2 {
+    margin-top: 4vh;
+}
 .yourScore .button {
 	width: 35%;
-	height: 10%;
+	height: 5vh;
 	background-color: white;
     text-shadow: none;
 	box-shadow: 1px 1px black;
@@ -283,7 +293,7 @@ h1 {
 	border-color: transparent;
     text-shadow: none;
 	width: 30%;
-	height: 10%;
+	height: 5vh;
     margin-top: 3vh;
 	color: black;
 }

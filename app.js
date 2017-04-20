@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     var roadWidth = road.width();
     var lineWidth = roadWidth / 7;
     var carPosition = 3;
-    var level = 14;
+    var level = 9;
     var cars = 0;
     var score = 0;
     var canTurn = true;
@@ -17,6 +17,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     var playerCarHeight = playerCar.css("height");
     var turnLeftButton = $("#turnLeft");
     var turnRightButton = $("#turnRight");
+    $(".bcgMusic")[0].volume = 0.2;
 
     var carAnimationDuration = 6;
     var carSpeed = ((carAnimationDuration / (windowHeight / parseInt(playerCarHeight)))*1000).toFixed(0);
@@ -63,6 +64,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
                 if ((currentCars[i].offset().top + parseInt(playerCarHeight) >= playerCarOffset) && (currentCars[i].offset().top - parseInt(playerCarHeight) <= 0.92 * playerCarOffset)) {
                     console.log("Ło kierwa działa!!!");
+                    var crashSound = $(".crashSound")[0];
+                    crashSound.volume = 1;
+                    crashSound.play();
                     $("#road").css("animation", "none");
                     currentCars = [];
                     $("#gameBody").fadeOut("slow");
@@ -74,13 +78,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
                     setTimeout(function() {
                         $(".yourScore").removeClass("hidden");
                     },1600)
-                    $(document).ready(function() {
-                        var audioElement = document.createElement('audio');
-                        audioElement.setAttribute('src', '../sounds/crash.mp3');
-                        audioElement.addEventListener('ended', function() {
-                            this.play();
-                        }, true);
-                    });
+                    // $(document).ready(function() {
+                    //     var audioElement = document.createElement('audio');
+                    //     audioElement.setAttribute('src', '../sounds/crash.mp3');
+                    //     audioElement.addEventListener('ended', function() {
+                    //         this.play();
+                    //     }, true);
+                    // });
                 }
             }
         }
@@ -214,24 +218,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
         var allCars = $(".generatedCar");
         var currentRoad = $("#road");
         var wH = $(window).height();
-        // console.log("wH value : " + wH);
 
-        for (var i = 0; i < currentCars.length; i++) {
-            // console.log($(allCars[i]).css("top"));
-            if ($(allCars[i]).css("top").slice(0, -2) > wH) {
-                // console.log("Działa");
-                // var randomBackground = lineChecking();
-                var randomBackground = Math.floor(Math.random() * 9) + 0;
-                var randomLinePosition = Math.floor(Math.random() * 6) + 0;
-                // console.log(randomLinePosition);
+        function recycleAgain () {
 
-                // currentRoad.find(".generatedCar:nth-child("+(i+1)+")")
-                //     .removeClass("animateCar")
-                //     .css("background-image", "url(./img" + imagesArray[randomBackground] + ")")
-                //     .css("left", ($(window).width() * 0.067 + (offset * randomLinePosition)))
-                //     // .css({"transform":"translate(88.373263.79910714285717,0)"})
-                //     .addClass("animateCar")
-                //     .data("line", randomLinePosition);
+            var randomLinePosition = Math.floor(Math.random() * 6) + 0;
+            var randomBackground = Math.floor(Math.random() * 9) + 0;
+            if (isLineFree[randomLinePosition]) {
+                var random = Math.floor(Math.random() * 6) + 0;
 
                 var myCar = currentRoad.find(".generatedCar:nth-child(" + (i + 1) + ")");
                 myCar.removeClass("animateCar");
@@ -243,6 +236,36 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 score++;
                 isLineFree[randomLinePosition] = false;
                 clearLine(randomLinePosition);
+            }
+            else {
+                recycleAgain();
+            }
+
+
+
+
+        }
+        // console.log("wH value : " + wH);
+
+        for (var i = 0; i < currentCars.length; i++) {
+            // console.log($(allCars[i]).css("top"));
+            if ($(allCars[i]).css("top").slice(0, -2) > wH) {
+
+                recycleAgain();
+                // console.log("Działa");
+                // var randomBackground = lineChecking();
+
+                // console.log(randomLinePosition);
+
+                // currentRoad.find(".generatedCar:nth-child("+(i+1)+")")
+                //     .removeClass("animateCar")
+                //     .css("background-image", "url(./img" + imagesArray[randomBackground] + ")")
+                //     .css("left", ($(window).width() * 0.067 + (offset * randomLinePosition)))
+                //     // .css({"transform":"translate(88.373263.79910714285717,0)"})
+                //     .addClass("animateCar")
+                //     .data("line", randomLinePosition);
+
+
             }
         }
     }
