@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     $(".bcgMusic")[0].volume = 0.2;
 
     var carAnimationDuration = 6;
-    var carSpeed = ((carAnimationDuration / (windowHeight / parseInt(playerCarHeight)))*1000).toFixed(0);
+    var carSpeed = ((carAnimationDuration / (windowHeight / parseInt(playerCarHeight))) * 1100).toFixed(0);
     console.log('car height : ' + playerCarHeight);
     console.log('wh : ' + windowHeight);
     console.log('car speed : ' + carSpeed);
@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     setInterval(collision, 100);
 
-    function clearLine (lineNumber) {
+    function clearLine(lineNumber) {
         setTimeout(function() {
             //licze czas wczesniej - łapie wh i obliczam ile czasu zajmie zjechanie jednego samochodu - podstawiam pod timeout na koncu tej funkcji.
             isLineFree[lineNumber] = true;
@@ -71,13 +71,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
                     currentCars = [];
                     $("#gameBody").fadeOut("slow");
                     $("#scoreToAdd").html(score * 10);
-                    setTimeout(function () {
+                    $(".gameover").fadeIn("slow");
+                    setTimeout(function() {
                         $(".gameOver").fadeOut("1000");
 
                     }, 1000);
                     setTimeout(function() {
-                        $(".yourScore").removeClass("hidden");
-                    },1600)
+                        $(".yourScore").css("display", "flex");
+                    }, 1600)
                     // $(document).ready(function() {
                     //     var audioElement = document.createElement('audio');
                     //     audioElement.setAttribute('src', '../sounds/crash.mp3');
@@ -136,7 +137,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         }
     });
 
-    document.addEventListener("keydown", function turns (event) {
+    document.addEventListener("keydown", function turns(event) {
         var offset = lineWidth;
         var pos = playerCar.position();
         if (canTurn === true && event.keyCode == "39") {
@@ -205,8 +206,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 cars++;
                 isLineFree[randomLinePosition] = false;
                 clearLine(randomLinePosition);
-            }
-            else {
+            } else {
                 randomCar();
             }
 
@@ -219,7 +219,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         var currentRoad = $("#road");
         var wH = $(window).height();
 
-        function recycleAgain () {
+        function recycleAgain() {
 
             var randomLinePosition = Math.floor(Math.random() * 6) + 0;
             var randomBackground = Math.floor(Math.random() * 9) + 0;
@@ -236,8 +236,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 score++;
                 isLineFree[randomLinePosition] = false;
                 clearLine(randomLinePosition);
-            }
-            else {
+            } else {
                 recycleAgain();
             }
 

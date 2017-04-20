@@ -15,7 +15,7 @@
     <audio class="crashSound" src="./sounds/crash.mp3"></audio>
 </audio>
     <section id="menu">
-        <h1>Infinite Highway</h1>
+        <h1 class="title">Infinite Highway</h1>
         <p class="info"> 2017 by michalgmazurek </p>
 
         <div class="carImgContainer">
@@ -32,21 +32,22 @@
 
     <section id="gameBody">
         <div id="turnLeft">
-            <div class="leftArrow">&#10132;</div>
+            <div class="leftArrow"><span>&#10132;</span></div>
         </div>
         <div class="roadContainer">
             <div id="road"></div>
         </div>
         <div id="turnRight">
-            <div class="rightArrow">&#10132;</div>
+            <div class="rightArrow"><span>&#10132;</span></div>
         </div>
         <div id="playerCar"> </div>
     </section>
 
     <section id="gameOverSection hidden">
-        <div class="gameOver">
+        <div class="gameOver hidden">
             <h1>game<br>over</h1> </div>
         <div class="yourScore hidden">
+            <h1 class="scoreGameOver">game<br>over</h1>
             <h2>Your score: <span id="scoreToAdd"></span></h2>
             <h2>Your name:</h2>
             <form>
