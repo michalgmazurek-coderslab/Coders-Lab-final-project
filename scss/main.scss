@@ -83,7 +83,6 @@ body {
 
 #gameBody {
     display: flex;
-    // display: none;
     visibility: hidden;
 }
 
@@ -96,7 +95,6 @@ body {
 
 .roadContainer {
     display: flex;
-    // display: none;
     justify-content: center;
     height: 100vh;
     width: 70vw;
@@ -120,7 +118,6 @@ body {
         from {
             background-position: 0 0;
         }
-
         to {
             background-position: 0 120vh;
         }
@@ -129,7 +126,6 @@ body {
         from {
             background-position: 0 0;
         }
-
         to {
             background-position: 0 120vh;
         }
@@ -183,7 +179,6 @@ body {
 }
 
 .generatedCar {
-    // background-image: url(../img/Police.png);
     background-position: center;
     background-size: 160%;
     margin: 0;
@@ -191,7 +186,6 @@ body {
     width: 7vw;
     height: 9.7vw;
     position: absolute;
-    // left: 21.5vw;
     z-index: 2;
 }
 
@@ -207,7 +201,6 @@ body {
 
 #gameOverSection {
     display: flex;
-    // align-content: center;
     flex-direction: column;
     justify-content: center;
     height: 100vh;
@@ -217,11 +210,6 @@ body {
 .gameOver {
     display: block;
     text-align: center;
-    // justify-content: center;
-    // align-content: center;
-    // height: 100vh;
-    // line-height: 100vh;
-    // vertical-align: middle;
 }
 
 .gameOver h1 {
@@ -283,7 +271,6 @@ body {
 
 .yourScore {
     display: none;
-    // align-content: center;
     justify-content: center;
     flex-direction: column;
     text-shadow: 1px 1px black;
@@ -398,10 +385,6 @@ body {
     .rightArrow {
         font-size: 5em;
     }
-    // #startBtn {
-    //     width: 10vw;
-    //     height: 6vh;
-    // }
 }
 @media only screen and (orientation:portrait) and (min-width: 800px) {
     .title {
