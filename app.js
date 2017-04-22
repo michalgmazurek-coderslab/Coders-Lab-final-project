@@ -275,7 +275,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 var keys = Object.keys(myDatabaseObject);
                 var myResults = [];
                 var sortedObjectsArray = myResults.sort(function(a, b) {
-                    return b.score - a.score
+                    return b.score - a.score;
                 });
 
                 keys.forEach(function(key) {
