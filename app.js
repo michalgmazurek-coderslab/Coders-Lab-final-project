@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     var roadWidth = road.width();
     var lineWidth = roadWidth / 7;
     var carPosition = 3;
-    var level = 9;
+    var level = 5;
     var cars = 0;
     var score = 0;
     var canTurn = true;
@@ -17,14 +17,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
     var playerCarHeight = playerCar.css("height");
     var turnLeftButton = $("#turnLeft");
     var turnRightButton = $("#turnRight");
-    $(".bcgMusic")[0].volume = 0.2;
+    $(".bcgMusic")[0].volume = 0.3;
+    var topTenArray = [];
 
     var carAnimationDuration = 6;
     var carSpeed = ((carAnimationDuration / (windowHeight / parseInt(playerCarHeight))) * 1100).toFixed(0);
-    console.log('car height : ' + playerCarHeight);
-    console.log('wh : ' + windowHeight);
-    console.log('car speed : ' + carSpeed);
-    console.log("carAnimationDuration : " + carSpeed);
+
 
     var imagesArray = [
         "/Ambulance.png",
@@ -49,6 +47,55 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     setInterval(collision, 100);
 
+    if (window.innerHeight > window.innerWidth) {
+        function setLevel() {
+            console.log("score :  " + score);
+
+            if (score <= 30 && score % 6 == 0) {
+                level++;
+                console.log("score :  " + score);
+            } else if (score <= 100 && score % 30 == 0) {
+                level++;
+
+
+            } else if (score <= 300 && score % 100 == 0) {
+                level++;
+                console.log(score);
+
+            } else if (score > 300 && score % 200 == 0) {
+                level++;
+                console.log(score);
+
+            }
+        }
+    } else {
+        level = 4;
+
+        function setLevel() {
+            console.log("score :  " + score);
+
+            if (score <= 30 && score % 15 == 0) {
+                level++;
+                console.log("score :  " + score);
+            } else if (score <= 100 && score % 35 == 0) {
+                level++;
+
+
+            } else if (score <= 300 && score % 150 == 0) {
+                level++;
+                console.log(score);
+
+            } else if (score > 300 && score % 250 == 0) {
+                level++;
+                console.log(score);
+
+            }
+        }
+    }
+
+
+
+
     function clearLine(lineNumber) {
         setTimeout(function() {
             //licze czas wczesniej - łapie wh i obliczam ile czasu zajmie zjechanie jednego samochodu - podstawiam pod timeout na koncu tej funkcji.
@@ -62,7 +109,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
             if (currentCars[i].data("line") == carPosition) {
                 var playerCarOffset = playerCar.offset().top;
 
-                if ((currentCars[i].offset().top + parseInt(playerCarHeight) >= playerCarOffset) && (currentCars[i].offset().top - parseInt(playerCarHeight) <= 0.92 * playerCarOffset)) {
+                if ((currentCars[i].offset().top + parseInt(playerCarHeight) >= parseInt(playerCarOffset) * 0.99) && (currentCars[i].offset().top - parseInt(playerCarHeight) <= 0.92 * playerCarOffset)) {
                     console.log("Ło kierwa działa!!!");
                     var crashSound = $(".crashSound")[0];
                     crashSound.volume = 1;
@@ -71,14 +118,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
                     currentCars = [];
                     $("#gameBody").fadeOut("slow");
                     $("#scoreToAdd").html(score * 10);
-                    $(".gameover").fadeIn("slow");
+                    $(".gameOver").fadeIn("slow");
                     setTimeout(function() {
-                        $(".gameOver").fadeOut("1000");
-
-                    }, 1000);
+                        $(".gameOver").fadeOut("slow");
+                    }, 1600);
                     setTimeout(function() {
                         $(".yourScore").css("display", "flex");
-                    }, 1600)
+                    }, 2100);
                     // $(document).ready(function() {
                     //     var audioElement = document.createElement('audio');
                     //     audioElement.setAttribute('src', '../sounds/crash.mp3');
@@ -234,6 +280,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 myCar.addClass("animateCar")
                     .data("line", randomLinePosition);
                 score++;
+                setLevel();
+                console.log(level);
+                $("#playerScore span").html(score * 10);
                 isLineFree[randomLinePosition] = false;
                 clearLine(randomLinePosition);
             } else {
@@ -300,4 +349,54 @@ document.addEventListener("DOMContentLoaded", function(event) {
         var carGeneratorInterval = setInterval(gameEngine, 800);
     });
 
+    var addScoreBtn = $("#addScoreBtn");
+
+    addScoreBtn.one("click", function(event) {
+        event.preventDefault();
+        var userNameInputValue = $("#nameInput").val();
+        console.log(userNameInputValue);
+
+        firebase.database().ref().push({
+            userName: userNameInputValue,
+            score: score * 10
+        }, function() {
+            var topScores = firebase.database().ref().orderByChild('score').limitToLast(10).on('value', function(fbdata) {
+                var myDatabaseObject = fbdata.exportVal();
+
+                var keys = Object.keys(myDatabaseObject);
+
+                var myResults = [];
+
+                keys.forEach(function(key) {
+                    var data = myDatabaseObject[key]
+                    myResults.push(data);
+
+                });
+
+                var sortedObjectsArray = myResults.sort(function(a, b) {
+                    return b.score - a.score
+                });
+                console.log(myResults.sort(function(a, b) {
+                    return b.score - a.score
+                }));
+                $("#gameOverSection").fadeOut("slow");
+                setTimeout(function() {
+                    $("#topTenSection").removeClass("hidden").fadeIn("slow").css("display", "flex");
+                }, 800);
+                // $("#topTenScores").append("<li><h2>" + cos.userName + "  :  " + cos.score + "</h2></li>");
+                // console.log(cos.userName, cos.score);
+                // topTenArray.push(fbdata.exportVal());
+                $("#gameOverSection").fadeOut("slow");
+                setTimeout(function() {
+                    $("#topTenSection").removeClass("hidden").fadeIn("slow").css("display", "flex");
+                }, 800);
+
+                // console.log(topTenArray);
+                for (var i = 0; i < sortedObjectsArray.length; i++) {
+
+                    $("#topTenScores").append("<li><h2><span>" + (i + 1) + "</span>.     " + sortedObjectsArray[i].userName + "  :  " + sortedObjectsArray[i].score + "</h2></li>");
+                }
+            });
+        });
+    });
 });

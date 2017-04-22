@@ -4,6 +4,7 @@
     font-family: 'Press Start 2P', Verdana, sans-serif;
     color: white;
     text-shadow: 3px 3px black;
+    // display: none;
 }
 
 body {
@@ -27,6 +28,7 @@ body {
 }
 
 .info {
+    display: none;
     position: absolute;
     top: 97vh;
     font-size: 0.6em;
@@ -79,15 +81,22 @@ body {
     margin-right: auto;
 }
 
-#menu {}
-
 #gameBody {
     display: flex;
+    // display: none;
     visibility: hidden;
+}
+
+#playerScore {
+    z-index: 8;
+    position: absolute;
+    margin-left: 5vw;
+    margin-top: 5vh;
 }
 
 .roadContainer {
     display: flex;
+    // display: none;
     justify-content: center;
     height: 100vh;
     width: 70vw;
@@ -197,24 +206,27 @@ body {
 }
 
 #gameOverSection {
-    display: none;
-    align-content: center;
+    display: flex;
+    // align-content: center;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
 }
 
 .gameOver {
-    display: none;
-    justify-content: center;
-    align-content: center;
-    height: 100vh;
-    line-height: 100vh;
-    vertical-align: middle;
+    display: block;
+    text-align: center;
+    // justify-content: center;
+    // align-content: center;
+    // height: 100vh;
+    // line-height: 100vh;
+    // vertical-align: middle;
 }
 
 .gameOver h1 {
     text-transform: uppercase;
-    align-self: center;
+    display: inline-block;
     font-size: 4.7em;
     z-index: 5;
 }
@@ -295,7 +307,7 @@ body {
     font-size: 1em;
 }
 
-.yourScore .button {
+.yourScore #addScoreBtn {
     width: 50vw;
     height: 9vh;
     background-color: white;
@@ -323,6 +335,28 @@ body {
 
 .scoreToAdd {
     display: inline;
+}
+
+#topTenSection {
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 70vw;
+    height: 100vh;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    ul {
+        list-style: none;
+    }
+    h1 {
+        font-size: 3em;
+        text-shadow: 3px 3px black;
+        margin-bottom: 5vh;
+        text-transform: uppercase;
+    }
 }
 @media only screen and (orientation:portrait) and (min-width: 360px) {
     .leftArrow,
@@ -424,7 +458,7 @@ body {
             height: 9vh;
         }
 
-        .button {
+        #addScoreBtn {
             width: 35vw;
             height: 15vh;
         }
@@ -514,7 +548,7 @@ body {
             height: 9vh;
         }
 
-        .button {
+        #addScoreBtn {
             width: 25vw;
             height: 9vh;
         }
