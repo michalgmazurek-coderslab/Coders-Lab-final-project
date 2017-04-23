@@ -274,14 +274,16 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 var myDatabaseObject = fbdata.exportVal();
                 var keys = Object.keys(myDatabaseObject);
                 var myResults = [];
-                var sortedObjectsArray = myResults.sort(function(a, b) {
-                    return b.score - a.score;
-                });
 
                 keys.forEach(function(key) {
                     var data = myDatabaseObject[key]
                     myResults.push(data);
                 });
+
+                var sortedObjectsArray = myResults.sort( function(a, b) {
+                    return b.score - a.score;
+                });
+                
                 $("#gameOverSection").fadeOut("slow");
                 setTimeout(function() {
                     $("#topTenSection").removeClass("hidden").fadeIn("slow").css("display", "flex");
