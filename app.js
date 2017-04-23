@@ -62,6 +62,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         }
     } else {
         level = 4;
+
         function setLevel() {
             if (score <= 30 && score % 15 == 0) {
                 level++;
@@ -266,37 +267,41 @@ document.addEventListener("DOMContentLoaded", function(event) {
         event.preventDefault();
         var userNameInputValue = $("#nameInput").val();
 
-        firebase.database().ref().push({
-            userName: userNameInputValue,
-            score: score * 10
-        }, function() {
-            var topScores = firebase.database().ref().orderByChild('score').limitToLast(10).on('value', function(fbdata) {
-                var myDatabaseObject = fbdata.exportVal();
-                var keys = Object.keys(myDatabaseObject);
-                var myResults = [];
+        if (userNameInputValue.length < 15) {
+            firebase.database().ref().push({
+                userName: userNameInputValue,
+                score: score * 10
+            }, function() {
+                var topScores = firebase.database().ref().orderByChild('score').limitToLast(10).on('value', function(fbdata) {
+                    var myDatabaseObject = fbdata.exportVal();
+                    var keys = Object.keys(myDatabaseObject);
+                    var myResults = [];
 
-                keys.forEach(function(key) {
-                    var data = myDatabaseObject[key]
-                    myResults.push(data);
+                    keys.forEach(function(key) {
+                        var data = myDatabaseObject[key]
+                        myResults.push(data);
+                    });
+
+                    var sortedObjectsArray = myResults.sort(function(a, b) {
+                        return b.score - a.score;
+                    });
+
+                    $("#gameOverSection").fadeOut("slow");
+                    setTimeout(function() {
+                        $("#topTenSection").removeClass("hidden").fadeIn("slow").css("display", "flex");
+                    }, 800);
+                    $("#gameOverSection").fadeOut("slow");
+                    setTimeout(function() {
+                        $("#topTenSection").removeClass("hidden").fadeIn("slow").css("display", "flex");
+                    }, 800);
+                    for (var i = 0; i < sortedObjectsArray.length; i++) {
+
+                        $("#topTenScores").append("<li><h2><span>" + (i + 1) + "</span>.     " + sortedObjectsArray[i].userName + "  :  " + sortedObjectsArray[i].score + "</h2></li>");
+                    }
                 });
-
-                var sortedObjectsArray = myResults.sort( function(a, b) {
-                    return b.score - a.score;
-                });
-                
-                $("#gameOverSection").fadeOut("slow");
-                setTimeout(function() {
-                    $("#topTenSection").removeClass("hidden").fadeIn("slow").css("display", "flex");
-                }, 800);
-                $("#gameOverSection").fadeOut("slow");
-                setTimeout(function() {
-                    $("#topTenSection").removeClass("hidden").fadeIn("slow").css("display", "flex");
-                }, 800);
-                for (var i = 0; i < sortedObjectsArray.length; i++) {
-
-                    $("#topTenScores").append("<li><h2><span>" + (i + 1) + "</span>.     " + sortedObjectsArray[i].userName + "  :  " + sortedObjectsArray[i].score + "</h2></li>");
-                }
             });
-        });
+        } else {
+            alert("Username too long!");
+        }
     });
 });
