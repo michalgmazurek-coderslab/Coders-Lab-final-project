@@ -52,7 +52,7 @@
             <h2>Your score: <span id="scoreToAdd"></span></h2>
             <h2>Your name:</h2>
             <form>
-                <input id="nameInput" style="font-family: 'Press Start 2P', Verdana, sans-serif" type="text" placeholder="Your name...">
+                <input id="nameInput" maxlength="10" style="font-family: 'Press Start 2P', Verdana, sans-serif" type="text" placeholder="Your name...">
                 <input id="addScoreBtn" style="font-family: 'Press Start 2P', Verdana, sans-serif" type="submit" value="Submit">
             </form>
 
@@ -62,6 +62,7 @@
     <section id="topTenSection" class="hidden">
         <h1>Top 10</h1>
         <ul id="topTenScores"></ul>
+        <button id="playAgainBtn" type="button" name="button" style="font-family: 'Press Start 2P', Verdana, sans-serif">Play Again!</button>
     </section>
 </body>
 <script src="https://www.gstatic.com/firebasejs/3.8.0/firebase.js"></script>

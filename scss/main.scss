@@ -201,7 +201,6 @@ body {
 }
 
 #gameOverSection {
-    display: flex;
     flex-direction: column;
     justify-content: center;
     height: 100vh;
@@ -339,17 +338,47 @@ body {
     ul {
         list-style: none;
     }
+    li {
+        margin-top: 3px;
+    }
     h1 {
-        font-size: 3em;
+        font-size: 1.3em;
         text-shadow: 3px 3px black;
         margin-bottom: 5vh;
         text-transform: uppercase;
     }
+    h2 {
+        font-size: 0.9em;
+    }
 }
+
+#playAgainBtn {
+    font-size: 0.7em;
+    margin-top: 10vh;
+    width: 30vw;
+    height: 9vw;
+    border-radius: 10px;
+    background-color: #E26A6A;
+    border: none;
+}
+
 @media only screen and (orientation:portrait) and (min-width: 360px) {
     .leftArrow,
     .rightArrow {
         font-size: 3em;
+    }
+    #topTenSection {
+        h1 {
+            font-size: 2.7em;
+        }
+        h2 {
+            font-size: 1em;
+        }
+        #playAgainBtn {
+            width: 50vw;
+            height: 15vh;
+            font-size: 1.1em;
+        }
     }
 }
 @media only screen and (orientation:portrait) and (min-width: 560px) {
@@ -365,6 +394,19 @@ body {
     .leftArrow,
     .rightArrow {
         font-size: 3.2em;
+    }
+
+    #topTenSection {
+        h1 {
+            font-size: 1.2em;
+        }
+        h2 {
+            font-size: 0.8em;
+        }
+        #playAgainBtn {
+            width: 30vw;
+            height: 20vh;
+        }
     }
 }
 @media only screen and (orientation:portrait) and (min-width: 760px) {
@@ -395,6 +437,19 @@ body {
     .leftArrow,
     .rightArrow {
         font-size: 6em;
+    }
+    #topTenSection {
+        h1 {
+            font-size: 3em;
+        }
+        h2 {
+            font-size: 1.3em;
+        }
+        #playAgainBtn {
+            width: 20vw;
+            height: 10vh;
+            font-size: 1em;
+        }
     }
 }
 @media only screen and (orientation:landscape) {
@@ -439,7 +494,7 @@ body {
 
         #nameInput {
             width: 45vw;
-            height: 9vh;
+            height: 7vh;
         }
 
         #addScoreBtn {
@@ -529,12 +584,26 @@ body {
 
         #nameInput {
             width: 35vw;
-            height: 9vh;
+            height: 7vh;
         }
 
         #addScoreBtn {
             width: 25vw;
             height: 9vh;
+        }
+    }
+
+    #topTenSection {
+        h1 {
+            font-size: 3em;
+        }
+        h2 {
+            font-size: 1.3em;
+        }
+        #playAgainBtn {
+            width: 20vw;
+            height: 10vh;
+            font-size: 1em;
         }
     }
 }

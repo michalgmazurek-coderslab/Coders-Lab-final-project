@@ -96,6 +96,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                     currentCars = [];
                     $("#gameBody").fadeOut("slow");
                     $("#scoreToAdd").html(score * 10);
+                    $("#gameOverSection").css("display", "flex");
                     $(".gameOver").fadeIn("slow");
                     setTimeout(function() {
                         $(".gameOver").fadeOut("slow");
@@ -267,7 +268,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
         event.preventDefault();
         var userNameInputValue = $("#nameInput").val();
 
-        if (userNameInputValue.length < 15) {
+        if (userNameInputValue.length > 11) {
+            alert("Username too long!");
+        } else {
             firebase.database().ref().push({
                 userName: userNameInputValue,
                 score: score * 10
@@ -296,12 +299,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
                     }, 800);
                     for (var i = 0; i < sortedObjectsArray.length; i++) {
 
-                        $("#topTenScores").append("<li><h2><span>" + (i + 1) + "</span>.     " + sortedObjectsArray[i].userName + "  :  " + sortedObjectsArray[i].score + "</h2></li>");
+                        $("#topTenScores").append("<li><h2>" + (i + 1) + ".&nbsp;" + sortedObjectsArray[i].userName + "&nbsp;:&nbsp;" + sortedObjectsArray[i].score + "</h2></li>");
                     }
                 });
             });
-        } else {
-            alert("Username too long!");
         }
+    });
+
+    $("#playAgainBtn").one("click", function() {
+        location.reload();
     });
 });
