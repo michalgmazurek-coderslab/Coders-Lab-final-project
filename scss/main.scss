@@ -11,12 +11,13 @@ body {
     background-color: #ABB7B7;
     overflow: hidden;
     overflow-x: hidden;
+    font-size: 62.5%;
 }
 
 .title {
-    font-size: 2.3em;
+    font-size: 2.3rem;
     text-shadow: 6px 6px black;
-    margin: 15vh auto 5vh;
+    margin-top: 50px;
     text-align: center;
 }
 
@@ -29,32 +30,32 @@ body {
 }
 
 .info {
-    display: none;
+    display: block;
     position: absolute;
-    top: 97vh;
-    font-size: 0.6em;
-    margin-left: 1vw;
+    top: 97%;
+    font-size: 0.6rem;
+    margin-left: 2%;
     text-shadow: 1px 1px black;
 }
 
 .instructions {
-    font-size: 1em;
-    margin-top: 4vh;
+    font-size: 1rem;
+    margin-top: 20px;
     margin-left: auto;
     margin-right: auto;
     text-align: center;
 }
 
 .instructions p {
-    margin-top: 2vh;
-    font-size: 0.8em;
+    font-size: 0.8rem;
+    line-height: 1.8rem;
 }
 
 #startBtn {
-    font-size: 0.7em;
-    margin-top: 10vh;
-    width: 60vw;
-    height: 20vw;
+    font-size: 0.8rem;
+    margin-top: 20px;
+    width: 60%;
+    height: 80px;
     border-radius: 10px;
     background-color: #E26A6A;
     border: none;
@@ -65,14 +66,14 @@ body {
 }
 
 .carImgContainer {
-    margin-top: 5vh;
-    top: 55vh;
-    height: 22vh;
-    width: 100%;
+    margin-top: 20px;
+    // top: 55vh;
+    height: 150px;
+    // width: 100%;
 }
 
 .carImg {
-    height: 20vh;
+    height: 100%;
     max-width: 100%;
     background-image: url("../img/Audi.png");
     background-position: center;
@@ -90,8 +91,9 @@ body {
 #playerScore {
     z-index: 8;
     position: absolute;
-    margin-left: 5vw;
-    margin-top: 5vh;
+    margin-left: 5%;
+    margin-top: 5%;
+    font-size: 1.2rem;
 }
 
 .roadContainer {
@@ -113,14 +115,14 @@ body {
     background-image: url("../img/Tileable%20tarmac%20road%20asphalt%20lines%20small.jpg");
     background-repeat: repeat;
     background-size: 14.3%;
-    -webkit-animation: backgroundScroll 1s linear infinite;
-    animation: backgroundScroll 1s linear infinite;
+    -webkit-animation: backgroundScroll 13s linear infinite;
+    animation: backgroundScroll 13s linear infinite;
     @-webkit-keyframes backgroundScroll {
         from {
             background-position: 0 0;
         }
         to {
-            background-position: 0 120vh;
+            background-position: 0 1200vh;
         }
     }
     @keyframes backgroundScroll {
@@ -128,7 +130,7 @@ body {
             background-position: 0 0;
         }
         to {
-            background-position: 0 120vh;
+            background-position: 0 1200vh;
         }
     }
 }
@@ -142,25 +144,25 @@ body {
 }
 
 .leftArrow {
-    font-size: 2.4em;
+    font-size: 2.4rem;
     transform: rotate(180deg);
-    height: 9vh;
-    line-height: 9vh;
+    height: 9%;
+    line-height: 3rem;
     z-index: 3;
     margin-top: 75vh;
 }
 
 #turnRight {
-    height: 99vh;
+    height: 99%;
     width: 14vw;
     z-index: 4;
 }
 
 .rightArrow {
-    font-size: 2.4em;
+    font-size: 2.4rem;
     z-index: 3;
-    height: 9vh;
-    line-height: 9vh;
+    height: 9%;
+    line-height: 3rem;
     margin-top: 72.5vh;
 }
 
@@ -212,10 +214,10 @@ body {
     text-align: center;
 }
 
-.gameOver h1 {
+.gameOver h2 {
     text-transform: uppercase;
     display: inline-block;
-    font-size: 4.7em;
+    font-size: 4.7rem;
     z-index: 5;
 }
 @-webkit-keyframes carAnimation {
@@ -272,9 +274,10 @@ body {
 .yourScore {
     display: none;
     justify-content: center;
+    align-content: center;
     flex-direction: column;
     text-shadow: 1px 1px black;
-    font-size: 1.8em;
+    // font-size: 1.8rem;
     text-transform: uppercase;
     width: 70vw;
     height: 100vh;
@@ -283,41 +286,75 @@ body {
     right: 0;
     margin-left: auto;
     margin-right: auto;
+    h2 {
+        font-size: 3.5rem;
+        margin-bottom: 30px;
+    }
+    h3 {
+        margin-bottom: 20px;
+        line-height: 2rem;
+        font-size: 1.4rem;
+    }
+    form {
+        margin-top: 10px;
+        input {
+            width: 100%;
+            font-size: 1rem;
+        }
+    }
+    #addScoreBtn {
+        width: 100%;
+        height: 80px;
+        background-color: white;
+        text-shadow: none;
+        box-shadow: 1px 1px black;
+        color: black;
+        border-color: transparent;
+        margin-top: 30px;
+    }
+    #nameInput {
+        border-color: transparent;
+        text-shadow: none;
+        width: 98%;
+        height: 40px;
+        margin-top: 15px;
+        color: black;
+    }
 }
 
-.yourScore form {
-    margin-top: 4vh;
-}
-
-.yourScore h2 {
-    margin-top: 4vh;
-    font-size: 1em;
-}
-
-.yourScore #addScoreBtn {
-    width: 50vw;
-    height: 9vh;
-    background-color: white;
-    text-shadow: none;
-    box-shadow: 1px 1px black;
-    color: black;
-    border-color: transparent;
-    margin-top: 3vh;
-}
-
-.yourScore #nameInput {
-    border-color: transparent;
-    text-shadow: none;
-    width: 60vw;
-    height: 5vh;
-    margin-top: 3vh;
-    color: black;
-}
+// .yourScore form {
+//
+//     }
+// }
+//
+// .yourScore h3 {
+//
+// }
+//
+// .yourScore #addScoreBtn {
+//     width: 50%;
+//     height: 90px;
+//     background-color: white;
+//     text-shadow: none;
+//     box-shadow: 1px 1px black;
+//     color: black;
+//     border-color: transparent;
+//     margin-top: 30px;
+// }
+//
+// .yourScore #nameInput {
+//     border-color: transparent;
+//     text-shadow: none;
+//     width: 60%;
+//     height: 30px;
+//     margin-top: 15px;
+//     color: black;
+// }
 
 .scoreGameOver {
-    font-size: 2em;
+    font-size: 2rem;
     align-self: center;
-    margin-bottom: 9vh;
+    margin-bottom: 9%;
 }
 
 .scoreToAdd {
@@ -341,22 +378,24 @@ body {
     li {
         margin-top: 3px;
     }
-    h1 {
-        font-size: 1.3em;
-        text-shadow: 3px 3px black;
-        margin-bottom: 5vh;
-        text-transform: uppercase;
-    }
     h2 {
-        font-size: 0.9em;
+        font-size: 2.3rem;
+        text-transform: uppercase;
+        margin-bottom: 50px;
+    }
+    h3 {
+        font-size: 0.9rem;
+        line-height: 1.5rem;
+        text-shadow: 3px 3px black;
+        text-transform: uppercase;
     }
 }
 
 #playAgainBtn {
-    font-size: 0.7em;
-    margin-top: 10vh;
-    width: 30vw;
-    height: 9vw;
+    margin-top: 50px;
+    font-size: 0.8rem;
+    width: 80%;
+    height: 90px;
     border-radius: 10px;
     background-color: #E26A6A;
     border: none;
@@ -365,92 +404,141 @@ body {
 @media only screen and (orientation:portrait) and (min-width: 360px) {
     .leftArrow,
     .rightArrow {
-        font-size: 3em;
+        font-size: 3rem;
     }
-    #topTenSection {
-        h1 {
-            font-size: 2.7em;
-        }
+    .title {
+        margin-bottom: 60px;
+    }
+    .instructions {
+        margin-top: 50px;
+    }
+    #startBtn {
+        margin-top: 50px;
+    }
+    .yourScore {
         h2 {
-            font-size: 1em;
-        }
-        #playAgainBtn {
-            width: 50vw;
-            height: 15vh;
-            font-size: 1.1em;
+            font-size: 4rem;
+            margin-bottom: 50px;
         }
     }
+    // #topTenSection {
+    //     h2 {
+    //         font-size: 2.7rem;
+    //     }
+    //     h3 {
+    //         font-size: 1rem;
+    //     }
+    //     #playAgainBtn {
+    //         width: 50vw;
+    //         height: 15vh;
+    //         font-size: 1.1rem;
+    //     }
+    // }
 }
 @media only screen and (orientation:portrait) and (min-width: 560px) {
-    .instructions {
-        font-size: 1.6em;
-    }
-
     #startBtn {
-        width: 40vw;
-        height: 10vh;
+        width: 40%;
+        height: 90px;
     }
 
     .leftArrow,
     .rightArrow {
-        font-size: 3.2em;
+        font-size: 5rem;
+    }
+    #menu {
+        h1 {
+            margin-top: 100px;
+            font-size: 4rem;
+            line-height: 5rem;
+        }
+    }
+    #playerScore {
+        font-size: 2rem;
+    }
+    .carImg {
+        height: 200px;
+        margin-bottom: 60px;
+    }
+    .instructions {
+        margin-top: 130px;
+        p {
+            font-size: 1.2rem;
+            line-height: 2.2rem;
+        }
+
+    }
+    #startBtn {
+        font-size: 1.2rem;
+        margin-top: 60px;
+    }
+    .yourScore {
+        font-size: 6rem;
+        margin-bottom: 70px;
+    }
+    #nameInput {
+        height: 60px;
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+    }
+    #addScoreBtn {
+        font-size: 1.2rem;
     }
 
-    #topTenSection {
-        h1 {
-            font-size: 1.2em;
-        }
-        h2 {
-            font-size: 0.8em;
-        }
-        #playAgainBtn {
-            width: 30vw;
-            height: 20vh;
-        }
-    }
+    // #topTenSection {
+    //     h2 {
+    //         font-size: 1.2rem;
+    //     }
+    //     h3 {
+    //         font-size: 0.8rem;
+    //     }
+    //     #playAgainBtn {
+    //         width: 30vw;
+    //         height: 20vh;
+    //     }
+    // }
 }
 @media only screen and (orientation:portrait) and (min-width: 760px) {
-    * {
-        text-shadow: 4px 4px black;
-    }
-
-    .title {
-        font-size: 2.7em;
-        margin-bottom: 9vh;
-        text-shadow: 9px 9px black;
-    }
-
-    .yourScore h2 {
-        font-size: 1.2em;
-    }
-
-    .leftArrow,
-    .rightArrow {
-        font-size: 5em;
-    }
+    // * {
+    //     text-shadow: 4px 4px black;
+    // }
+    //
+    // .title {
+    //     font-size: 2.7rem;
+    //     margin-bottom: 9vh;
+    //     text-shadow: 9px 9px black;
+    // }
+    //
+    // .yourScore h3 {
+    //     font-size: 1.2rem;
+    // }
+    //
+    // .leftArrow,
+    // .rightArrow {
+    //     font-size: 5rem;
+    // }
 }
 @media only screen and (orientation:portrait) and (min-width: 800px) {
-    .title {
-        font-size: 3.4em;
-    }
-
-    .leftArrow,
-    .rightArrow {
-        font-size: 6em;
-    }
-    #topTenSection {
-        h1 {
-            font-size: 3em;
-        }
-        h2 {
-            font-size: 1.3em;
-        }
-        #playAgainBtn {
-            width: 20vw;
-            height: 10vh;
-            font-size: 1em;
-        }
-    }
+    // .title {
+    //     font-size: 3.4rem;
+    // }
+    //
+    // .leftArrow,
+    // .rightArrow {
+    //     font-size: 6rem;
+    // }
+    // #topTenSection {
+    //     h2 {
+    //         font-size: 3rem;
+    //     }
+    //     h3 {
+    //         font-size: 1.3rem;
+    //     }
+    //     #playAgainBtn {
+    //         width: 20vw;
+    //         height: 10vh;
+    //         font-size: 1rem;
+    //     }
+    // }
 }
 @media only screen and (orientation:landscape) {
     * {
@@ -458,12 +546,12 @@ body {
     }
 
     .title {
-        font-size: 1em;
+        font-size: 1rem;
         text-shadow: 4px 4px black;
     }
 
     .instructions {
-        font-size: 0.3em;
+        font-size: 0.3rem;
     }
 
     #startBtn {
@@ -472,13 +560,13 @@ body {
     }
 
     .info {
-        font-size: 0.4em;
+        font-size: 0.4rem;
         margin-bottom: 6vh;
     }
 
     .leftArrow,
     .rightArrow {
-        font-size: 3em;
+        font-size: 3rem;
     }
 
     .scoreGameOver {
@@ -488,8 +576,8 @@ body {
     .yourScore {
         margin-top: 2vh;
 
-        h2 {
-            font-size: 0.8em;
+        h3 {
+            font-size: 0.8rem;
         }
 
         #nameInput {
@@ -505,11 +593,11 @@ body {
 }
 @media only screen and (orientation:landscape) and (min-width: 420px) {
     .title {
-        font-size: 1.4em;
+        font-size: 1.4rem;
     }
 
     .instructions {
-        font-size: 0.7em;
+        font-size: 0.7rem;
     }
 
     #startBtn {
@@ -520,15 +608,15 @@ body {
 @media only screen and (orientation:landscape) and (min-width: 500px) {
     .scoreGameOver {
         display: block;
-        font-size: 1.3em;
+        font-size: 1.3rem;
     }
 
     .title {
-        font-size: 1.8em;
+        font-size: 1.8rem;
     }
 
     .instructions {
-        font-size: 0.8em;
+        font-size: 0.8rem;
     }
 }
 @media only screen and (orientation:landscape) and (min-width: 600px) {
@@ -538,7 +626,7 @@ body {
     }
 
     .instructions {
-        font-size: 1em;
+        font-size: 1rem;
     }
 }
 @media only screen and (orientation:landscape) and (min-width: 800px) {
@@ -548,38 +636,37 @@ body {
     }
 
     .title {
-        font-size: 2.5em;
+        font-size: 2.5rem;
         text-shadow: 4px 4px black;
     }
 
     .instructions {
-        font-size: 1.2em;
+        font-size: 1.2rem;
     }
 
     .info {
-        font-size: 0.6em;
+        font-size: 0.6rem;
         margin-bottom: 6vh;
     }
 
-    .leftArrow,
-    .rightArrow {
+    .leftArrow .rightArrow {
         display: none;
     }
 
     .gameOver {
-        font-size: 2.2em;
+        font-size: 2.2rem;
     }
 
     .scoreGameOver {
-        font-size: 3em;
+        font-size: 3rem;
         margin-bottom: 5vh;
     }
 
     .yourScore {
         margin-top: 2vh;
 
-        h2 {
-            font-size: 0.8em;
+        h3 {
+            font-size: 0.8rem;
         }
 
         #nameInput {
@@ -594,16 +681,16 @@ body {
     }
 
     #topTenSection {
-        h1 {
-            font-size: 3em;
-        }
         h2 {
-            font-size: 1.3em;
+            font-size: 3rem;
+        }
+        h3 {
+            font-size: 1.3rem;
         }
         #playAgainBtn {
             width: 20vw;
             height: 10vh;
-            font-size: 1em;
+            font-size: 1rem;
         }
     }
 }

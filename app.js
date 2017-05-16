@@ -17,7 +17,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
     var playerCarHeight = playerCar.css("height");
     var turnLeftButton = $("#turnLeft");
     var turnRightButton = $("#turnRight");
-    $(".bcgMusic")[0].volume = 0.3;
     var topTenArray = [];
     var startBtn = $("#startBtn");
     var menuSection = $("#menu");
@@ -34,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         "/truck.png",
         "/Car.png",
         "/taxi.png",
-        "/Ambulance.png",
+        "/Ambulance.png"
     ];
     var isLineFree = [
         true,
@@ -46,6 +45,124 @@ document.addEventListener("DOMContentLoaded", function(event) {
     ];
 
     setInterval(collision, 100);
+    $(".bcgMusic")[0].volume = 0.3;
+
+    turnLeftButton.on("touchstart", function(event) {
+        var offset = lineWidth;
+        var pos = playerCar.position();
+
+        if (canTurn === true) {
+            canTurn = false;
+            if (carPosition != 0) {
+                setTimeout(turnPossible, 400);
+                leftTurn();
+                setTimeout(forward, 330);
+                playerCar.css("left", pos.left - offset);
+                carPosition--;
+            } else if (carPosition === 0) {
+                turnPossible();
+            }
+        }
+    });
+
+    turnRightButton.on("touchstart", function(event) {
+        var offset = lineWidth;
+        var pos = playerCar.position();
+
+        if (canTurn === true) {
+            canTurn = false;
+            if (carPosition < 5) {
+                setTimeout(turnPossible, 400);
+                playerCar.css("left", pos.left + offset);
+                rightTurn();
+                setTimeout(forward, 330);
+                carPosition++;
+            } else if (carPosition === 5) {
+                turnPossible();
+            }
+        }
+    });
+
+    $(document).on("keydown", function turns(event) {
+        var offset = lineWidth;
+        var pos = playerCar.position();
+
+        if (canTurn === true && event.keyCode == "39") {
+            canTurn = false;
+            if (carPosition < 5) {
+                setTimeout(turnPossible, 400);
+                playerCar.css("left", pos.left + offset);
+                rightTurn();
+                setTimeout(forward, 330);
+                carPosition++;
+            } else if (carPosition === 5) {
+                turnPossible();
+            }
+        } else if (canTurn === true && event.keyCode == "37") {
+            canTurn = false;
+            if (carPosition != 0) {
+                setTimeout(turnPossible, 400);
+                leftTurn();
+                setTimeout(forward, 330);
+                playerCar.css("left", pos.left - offset);
+                carPosition--;
+            } else if (carPosition === 0) {
+                turnPossible();
+            }
+        }
+    });
+
+    startBtn.on("click", function() {
+        menuSection.addClass("hidden");
+        gameBody.css("visibility", "visible");
+        var carGeneratorInterval = setInterval(gameEngine, 800);
+    });
+
+    addScoreBtn.one("click", function(event) {
+        event.preventDefault();
+        var userNameInputValue = $("#nameInput").val();
+
+        if (userNameInputValue.length > 11) {
+            alert("Username too long!");
+        } else {
+            firebase.database().ref().push({
+                userName: userNameInputValue,
+                score: score * 10
+            }, function() {
+                var topScores = firebase.database().ref().orderByChild('score').limitToLast(10).on('value', function(fbdata) {
+                    var myDatabaseObject = fbdata.exportVal();
+                    var keys = Object.keys(myDatabaseObject);
+                    var myResults = [];
+
+                    keys.forEach(function(key) {
+                        var data = myDatabaseObject[key]
+                        myResults.push(data);
+                    });
+
+                    var sortedObjectsArray = myResults.sort(function(a, b) {
+                        return b.score - a.score;
+                    });
+
+                    $("#gameOverSection").fadeOut("slow");
+                    setTimeout(function() {
+                        $("#topTenSection").removeClass("hidden").fadeIn("slow").css("display", "flex");
+                    }, 800);
+                    $("#gameOverSection").fadeOut("slow");
+                    setTimeout(function() {
+                        $("#topTenSection").removeClass("hidden").fadeIn("slow").css("display", "flex");
+                    }, 800);
+                    for (var i = 0; i < sortedObjectsArray.length; i++) {
+
+                        $("#topTenScores").append("<li><h3>" + (i + 1) + ".&nbsp;" + sortedObjectsArray[i].userName + "&nbsp;:&nbsp;" + sortedObjectsArray[i].score + "</h3></li>");
+                    }
+                });
+            });
+        }
+    });
+
+    $("#playAgainBtn").one("click", function() {
+        location.reload();
+    });
 
     if (window.innerHeight > window.innerWidth) {
         function setLevel() {
@@ -108,71 +225,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
             }
         }
     }
-
-    turnLeftButton.on("touchstart", function(event) {
-        var offset = lineWidth;
-        var pos = playerCar.position();
-
-        if (canTurn === true) {
-            canTurn = false;
-            if (carPosition != 0) {
-                setTimeout(turnPossible, 400);
-                leftTurn();
-                setTimeout(forward, 330);
-                playerCar.css("left", pos.left - offset);
-                carPosition--;
-            } else if (carPosition === 0) {
-                turnPossible();
-            }
-        }
-    });
-
-    turnRightButton.on("touchstart", function(event) {
-        var offset = lineWidth;
-        var pos = playerCar.position();
-
-        if (canTurn === true) {
-            canTurn = false;
-            if (carPosition < 5) {
-                setTimeout(turnPossible, 400);
-                playerCar.css("left", pos.left + offset);
-                rightTurn();
-                setTimeout(forward, 330);
-                carPosition++;
-            } else if (carPosition === 5) {
-                turnPossible();
-            }
-        }
-    });
-
-    document.addEventListener("keydown", function turns(event) {
-        var offset = lineWidth;
-        var pos = playerCar.position();
-
-        if (canTurn === true && event.keyCode == "39") {
-            canTurn = false;
-            if (carPosition < 5) {
-                setTimeout(turnPossible, 400);
-                playerCar.css("left", pos.left + offset);
-                rightTurn();
-                setTimeout(forward, 330);
-                carPosition++;
-            } else if (carPosition === 5) {
-                turnPossible();
-            }
-        } else if (canTurn === true && event.keyCode == "37") {
-            canTurn = false;
-            if (carPosition != 0) {
-                setTimeout(turnPossible, 400);
-                leftTurn();
-                setTimeout(forward, 330);
-                playerCar.css("left", pos.left - offset);
-                carPosition--;
-            } else if (carPosition === 0) {
-                turnPossible();
-            }
-        }
-    });
 
     function gameEngine() {
         randomCar();
@@ -257,56 +309,4 @@ document.addEventListener("DOMContentLoaded", function(event) {
         playerCar.removeClass("turnRight")
         playerCar.addClass("Forward");
     }
-
-    startBtn.on("click", function() {
-        menuSection.addClass("hidden");
-        gameBody.css("visibility", "visible");
-        var carGeneratorInterval = setInterval(gameEngine, 800);
-    });
-
-    addScoreBtn.one("click", function(event) {
-        event.preventDefault();
-        var userNameInputValue = $("#nameInput").val();
-
-        if (userNameInputValue.length > 11) {
-            alert("Username too long!");
-        } else {
-            firebase.database().ref().push({
-                userName: userNameInputValue,
-                score: score * 10
-            }, function() {
-                var topScores = firebase.database().ref().orderByChild('score').limitToLast(10).on('value', function(fbdata) {
-                    var myDatabaseObject = fbdata.exportVal();
-                    var keys = Object.keys(myDatabaseObject);
-                    var myResults = [];
-
-                    keys.forEach(function(key) {
-                        var data = myDatabaseObject[key]
-                        myResults.push(data);
-                    });
-
-                    var sortedObjectsArray = myResults.sort(function(a, b) {
-                        return b.score - a.score;
-                    });
-
-                    $("#gameOverSection").fadeOut("slow");
-                    setTimeout(function() {
-                        $("#topTenSection").removeClass("hidden").fadeIn("slow").css("display", "flex");
-                    }, 800);
-                    $("#gameOverSection").fadeOut("slow");
-                    setTimeout(function() {
-                        $("#topTenSection").removeClass("hidden").fadeIn("slow").css("display", "flex");
-                    }, 800);
-                    for (var i = 0; i < sortedObjectsArray.length; i++) {
-
-                        $("#topTenScores").append("<li><h2>" + (i + 1) + ".&nbsp;" + sortedObjectsArray[i].userName + "&nbsp;:&nbsp;" + sortedObjectsArray[i].score + "</h2></li>");
-                    }
-                });
-            });
-        }
-    });
-
-    $("#playAgainBtn").one("click", function() {
-        location.reload();
-    });
 });
