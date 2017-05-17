@@ -113,7 +113,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     });
 
     startBtn.on("click", function() {
-        menuSection.addClass("hidden");
+        menuSection.css("display", "none");
         gameBody.css("visibility", "visible");
         var carGeneratorInterval = setInterval(gameEngine, 800);
     });
@@ -220,7 +220,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                     }, 1600);
                     setTimeout(function() {
                         $(".yourScore").css("display", "flex");
-                    }, 2100);
+                    }, 2200);
                 }
             }
         }
