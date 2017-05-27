@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function(event) {
+$(document).ready( function() {
 
     var playerCar = $("#playerCar");
     var road = $("#road");
@@ -46,6 +46,15 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     setInterval(collision, 100);
     $(".bcgMusic")[0].volume = 0.3;
+
+    $(window).resize(function() {
+        road = $("#road");
+        windowHeight = $(window).height();
+        roadWidth = road.width();
+        lineWidth = roadWidth / 7;
+        offset = lineWidth;
+
+    });
 
     turnLeftButton.on("touchstart", function(event) {
         var offset = lineWidth;
@@ -279,6 +288,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 isLineFree[randomLinePosition] = false;
                 clearLine(randomLinePosition);
             } else {
+                // recycleCars();
                 recycleAgain();
             }
         }
@@ -305,8 +315,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
     }
 
     function forward() {
-        playerCar.removeClass("turnLeft");
-        playerCar.removeClass("turnRight")
+        playerCar.removeClass("turnLeft turnRight");
+        // playerCar.removeClass("turnRight")
         playerCar.addClass("Forward");
     }
 });

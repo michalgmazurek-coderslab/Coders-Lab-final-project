@@ -5,6 +5,9 @@
     color: white;
     text-shadow: 3px 3px black;
 }
+html, body {
+  overflow:hidden
+}
 body {
     background-color: #ABB7B7;
     overflow: hidden;
@@ -29,7 +32,7 @@ body {
     display: flex;
 }
 .info {
-    display: block;
+    display: none;
     position: absolute;
     top: 97%;
     font-size: 0.6rem;
@@ -99,7 +102,7 @@ body {
     min-width: 100%;
     min-height: 100vh;
     z-index: -1;
-    background-image: url("../img/Tileable%20tarmac%20road%20asphalt%20lines%20small.jpg");
+    background-image: url("../img/road.jpg");
     background-repeat: repeat;
     background-size: 14.3%;
     -webkit-animation: backgroundScroll 9s linear infinite;
@@ -358,6 +361,9 @@ body {
             margin-bottom: 50px;
         }
     }
+    .info {
+        display: none;
+    }
 }
 @media only screen and (orientation:portrait) and (min-width: 560px) {
     #startBtn {
@@ -401,6 +407,9 @@ body {
     }
     #addScoreBtn {
         font-size: 1.2rem;
+    }
+    .info {
+        display: block;
     }
 }
 @media only screen and (orientation:portrait) and (min-width: 1000px) {
@@ -460,7 +469,7 @@ body {
         height: 50px;
     }
     .info {
-        font-size: 0.4rem;
+        font-size: 0.8rem;
         margin-bottom: 2px;
     }
     .leftArrow,
@@ -500,6 +509,9 @@ body {
             height: 50px;
             margin-top: 20px;
         }
+    }
+    .info {
+        display: block;
     }
 }
 @media only screen and (orientation:landscape) and (min-width: 600px) {
