@@ -34,7 +34,7 @@ body {
 .info {
     display: none;
     position: absolute;
-    top: 97%;
+    top: 94%;
     font-size: 0.6rem;
     margin-left: 2%;
     text-shadow: 1px 1px black;
@@ -48,23 +48,24 @@ body {
 }
 .instructions p {
     font-size: 0.8rem;
-    line-height: 1.8rem;
+    line-height: 1.6rem;
 }
 #startBtn {
     font-size: 0.8rem;
     margin-top: 20px;
     width: 60%;
-    height: 80px;
+    height: 70px;
     border-radius: 10px;
     background-color: #E26A6A;
     border: none;
-}
-#startBtn:hover {
-    background-color: #D24D57;
+    transition: all 0.3s linear;
+    &:hover {
+        background-color: #D24D57;
+    }
 }
 .carImgContainer {
     margin-top: 20px;
-    height: 150px;
+    height: 130px;
 }
 .carImg {
     height: 100%;
@@ -84,7 +85,7 @@ body {
     z-index: 8;
     position: absolute;
     margin-left: 5%;
-    margin-top: 5%;
+    margin-top: 50px;;
     font-size: 1.2rem;
 }
 .roadContainer {
@@ -135,7 +136,7 @@ body {
     font-size: 2.4rem;
     line-height: 3rem;
     z-index: 3;
-    margin-top: 77vh;
+    margin-top: 74vh;
     width: 100%;
     text-align: center;
 }
@@ -148,7 +149,7 @@ body {
     font-size: 2.4rem;
     z-index: 3;
     line-height: 3rem;
-    margin-top: 77vh;
+    margin-top: 74vh;
     width: 100%;
     text-align: center;
 }
@@ -197,7 +198,7 @@ body {
 .gameOver h2 {
     text-transform: uppercase;
     display: inline-block;
-    font-size: 4.7rem;
+    font-size: 4.5rem;
     z-index: 5;
 }
 @-webkit-keyframes carAnimation {
@@ -261,13 +262,13 @@ body {
     margin-left: auto;
     margin-right: auto;
     h2 {
-        font-size: 3.5rem;
-        margin-bottom: 30px;
+        font-size: 3.3rem;
+        margin-bottom: 25px;
     }
     h3 {
-        margin-bottom: 20px;
+        margin-bottom: 15px;
         line-height: 2rem;
-        font-size: 1.4rem;
+        font-size: 1.3rem;
     }
     form {
         margin-top: 10px;
@@ -278,13 +279,17 @@ body {
     }
     #addScoreBtn {
         width: 100%;
-        height: 80px;
+        height: 70px;
         background-color: white;
         text-shadow: none;
         box-shadow: 1px 1px black;
         color: black;
         border-color: transparent;
         margin-top: 30px;
+        transition: all 0.3s linear;
+        &:hover {
+            background-color: #DADFE1;
+        }
     }
     #nameInput {
         border-color: transparent;
@@ -321,9 +326,9 @@ body {
         margin-top: 3px;
     }
     h2 {
-        font-size: 2.3rem;
+        font-size: 2.2rem;
         text-transform: uppercase;
-        margin-bottom: 50px;
+        margin-bottom: 30px;
     }
     h3 {
         font-size: 0.9rem;
@@ -333,13 +338,17 @@ body {
     }
 }
 #playAgainBtn {
-    margin-top: 50px;
+    margin-top: 40px;
     font-size: 0.8rem;
     width: 80%;
-    height: 90px;
+    height: 70px;
     border-radius: 10px;
     background-color: #E26A6A;
     border: none;
+    transition: all 0.3s linear;
+    &:hover {
+        background-color: #D24D57;
+    }
 }
 @media only screen and (orientation:portrait) and (min-width: 360px) {
     .leftArrow,
@@ -347,7 +356,7 @@ body {
         font-size: 3rem;
     }
     .title {
-        margin-bottom: 60px;
+        margin-bottom: 20px;
     }
     .instructions {
         margin-top: 50px;
@@ -358,7 +367,7 @@ body {
     .yourScore {
         h2 {
             font-size: 4rem;
-            margin-bottom: 50px;
+            margin-bottom: 30px;
         }
     }
     .info {
@@ -446,7 +455,7 @@ body {
         }
     }
 }
-@media only screen and (orientation:landscape) {
+@media only screen and (orientation:landscape) and (min-width: 300px) {
     * {
         text-shadow: 2px 2px black;
     }
@@ -469,8 +478,10 @@ body {
         height: 50px;
     }
     .info {
-        font-size: 0.8rem;
-        margin-bottom: 2px;
+        display: none;
+    }
+    #playerScore {
+        margin-top: 50px;
     }
     .leftArrow,
     .rightArrow {
@@ -484,15 +495,16 @@ body {
             display: none;
         }
         h3 {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
         }
         #nameInput {
             width: 70%;
             height: 40px;
+            margin-top: 5px;
         }
         #addScoreBtn {
             width: 50%;
-            height: 50px;
+            height: 40px;
         }
     }
     #topTenSection {
@@ -510,13 +522,18 @@ body {
             margin-top: 20px;
         }
     }
-    .info {
-        display: block;
-    }
 }
 @media only screen and (orientation:landscape) and (min-width: 600px) {
     .title {
         font-size: 2.1rem;
+    }
+    .leftArrow,
+    .rightArrow {
+        margin-top: 76vh;
+    }
+    .info {
+        display: block;
+        font-size: .3rem;
     }
 }
 @media only screen and (orientation:landscape) and (min-width: 800px) {
