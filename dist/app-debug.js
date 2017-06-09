@@ -245,7 +245,7 @@ $(document).ready(function() {
     }
 
     function randomCar() {
-        if (cars < 4) {
+        if (cars < level) {
             var randomLinePosition = Math.floor(Math.random() * 6) + 0;
             if (flag == 0) {
                 return false;
