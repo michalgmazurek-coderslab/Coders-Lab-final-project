@@ -245,17 +245,13 @@ $(document).ready(function() {
     }
 
     function randomCar() {
-        if (cars < 4) {
+        if (cars < level) {
             var randomLinePosition = Math.floor(Math.random() * 6) + 0;
             if (flag == 0) {
                 return false;
             } else if (isLineFree[randomLinePosition]) {
                 var randomBackground = Math.floor(Math.random() * 9) + 0;
                 var newCar = divGenerator(randomLinePosition);
-                setTimeout(function() {
-                    recycleAgain(randomLinePosition, newCar);
-                }, 6000);
-
                 newCar.css("background-image", "url(./img" + imagesArray[randomBackground] + ")");
                 newCar.css("left", ($(window).width() * 0.067 + (offset * randomLinePosition)));
                 road.append(newCar);
@@ -263,6 +259,9 @@ $(document).ready(function() {
                 cars++;
                 isLineFree[randomLinePosition] = false;
                 clearLine(randomLinePosition);
+                setTimeout(function() {
+                    recycleAgain(randomLinePosition, newCar);
+                }, 6000);
             } else {
                 randomCar();
             }
@@ -278,9 +277,13 @@ $(document).ready(function() {
         } else if (isLineFree[randomLinePosition]) {
             var random = Math.floor(Math.random() * 6) + 0;
             var myCar = car;
-            myCar.removeClass("animateCar");
+            console.log(car, "car " + i);
+            console.log(isLineFree, "wolna linia");
+            console.log(currentCars, "fury")
+            console.log(myCar.data("line"), "dane")
+            myCar.css("animate", "");
             myCar.css("background-image", "url(./img" + imagesArray[randomBackground] + ")").css("left", ($(window).width() * 0.067 + (offset * randomLinePosition)));
-            myCar.addClass("animateCar").data("line", randomLinePosition);
+            myCar.data("line", randomLinePosition);
             score++;
             setLevel();
             $("#playerScore span").html(score * 10);

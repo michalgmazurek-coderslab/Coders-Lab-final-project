@@ -178,7 +178,7 @@ body {
     z-index: 2;
 }
 .animateCar {
-    animation: carAnimation linear;
+    animation: carAnimation linear infinite;
     animation-duration: 6s;
     animation-fill-mode: forwards;
 }
