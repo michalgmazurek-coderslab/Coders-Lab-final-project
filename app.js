@@ -293,7 +293,9 @@ $(document).ready(function() {
                 recycleAgain(randomLinePosition, myCar);
             }, 6000);
         } else {
-            recycleAgain(i, car);
+            setTimeout(function() {
+                recycleAgain(i, car);
+            }, 20);
         }
     }
 
