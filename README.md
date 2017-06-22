@@ -8,6 +8,8 @@ My Project: https://michalgmazurek-coderslab.github.io/Coders-Lab-final-project/
 Infinite Highway is a JavaScript game - my final project after programming course at Coders Lab. It is connected to Firebase Realtime Database. Top 10 scores are avaliable after adding Your score. It is 1<sup>st</sup> version of the game, further updates are comming. Have fun!
 <br>
 
+![game-screen](http://imgur.com/a/0taxT)
+
 ## Built With
 
 * HTML
