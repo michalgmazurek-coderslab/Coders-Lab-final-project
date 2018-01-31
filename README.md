@@ -1,7 +1,7 @@
 # Infinite Highway - Coders Lab final project
 <br>
 
-My Project: https://michalgmazurek-coderslab.github.io/Coders-Lab-final-project/
+My Project: https://michalgmazurek.github.io/Coders-Lab-final-project/
 <br><br>
 
 
